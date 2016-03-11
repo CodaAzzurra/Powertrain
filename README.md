@@ -38,33 +38,33 @@ To start the web server, in another terminal run
 	
 To find all movements of a vehicle use http://localhost:8080/vehicle-tracking-app/rest/getmovements/{vehicle}/{date} e.g.
 
-	http://localhost:8080/vehicle-tracking-app/rest/getmovements/1/2016-01-12
+	curl http://localhost:8080/vehicle-tracking-app/rest/getmovements/1/2016-03-11
 
 Or
 
-	select * from vehicle where vehicle = '1' and day='2016-01-12';
+	select * from vehicle_tracking_app.vehicle_stats where vehicle_id = '1' and time_period = '2016-03-11';
 
 To find all vehicle movement, use the rest command http://localhost:8080/vehicle-tracking-app/rest/getvehicles/{tile} e.g.
 
-	http://localhost:8080/vehicle-tracking-app/rest/getvehicles/gcrf
+	curl http://localhost:8080/vehicle-tracking-app/rest/getvehicles/u10e
 
 or 
 
-	CQL - select * from current_location where solr_query = '{"q": "tile1:gcrf"}' limit 1000;
+	CQL - select * from vehicle_tracking_app.current_location where solr_query = '{"q": "tile1:u10e"}' limit 1000;
 
 
 To find all vehicles within a certain distance of a latitude and longitude, http://localhost:8080/vehicle-tracking-app/rest/search/{lat}/{long}/{distance}
 
-	http://localhost:8080/vehicle-tracking-app/rest/search/52.53956077140064/-0.20225833920426117/5
+	curl http://localhost:8080/vehicle-tracking-app/rest/search/52.53956077140064/-0.20225833920426117/5
 	
 Or
 
-	select * from current_location where solr_query = '{"q": "*:*", "fq": "{!geofilt sfield=lat_long pt=52.53956077140064,-0.20225833920426117 d=5}"}' limit 1000;
+	select * from vehicle_tracking_app.current_location where solr_query = '{"q": "*:*", "fq": "{!geofilt sfield=lat_long pt=52.53956077140064,-0.20225833920426117 d=5}"}' limit 1000;
  	
  	
 If you have created the core on the vehicle table as well, you can run a query that will allow a user to search vehicles in a particular region in a particular time. 
 
-	select * from vehicle where solr_query = '{"q": "*:*", "fq": "date:[2016-02-11T12:32:00.000Z TO 2016-02-11T12:34:00.000Z] AND {!bbox sfield=lat_long pt=51.404970234124800,-.206445841245690 d=1}"}' limit 1000;
+	select * from vehicle_tracking_app.vehicle_stats where solr_query = '{"q": "*:*", "fq": "time_period:[2016-02-11T12:32:00.000Z TO 2016-03-11T12:34:00.000Z] AND {!bbox sfield=lat_long pt=51.404970234124800,-.206445841245690 d=1}"}' limit 1000;
 
 To remove the tables and the schema, run the following.
 
