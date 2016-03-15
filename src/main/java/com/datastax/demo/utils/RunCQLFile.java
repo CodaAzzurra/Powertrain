@@ -8,10 +8,9 @@ import org.slf4j.LoggerFactory;
 
 public abstract class RunCQLFile {
 
-    private static Logger logger = LoggerFactory.getLogger(RunCQLFile.class);
     static String CREATE_KEYSPACE;
     static String DROP_KEYSPACE;
-
+    private static Logger logger = LoggerFactory.getLogger(RunCQLFile.class);
     private Cluster cluster;
     private Session session;
     private String CQL_FILE;

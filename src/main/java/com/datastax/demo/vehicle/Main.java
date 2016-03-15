@@ -35,6 +35,13 @@ public class Main {
         }
     }
 
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        new Main();
+    }
+
     private void updateLocations() {
 
         Map<String, LatLong> newLocations = new HashMap<String, LatLong>();
@@ -106,12 +113,5 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        new Main();
     }
 }

@@ -5,7 +5,9 @@ import com.datastax.demo.vehicle.VehicleDao;
 import com.datastax.demo.vehicle.model.Vehicle;
 import com.github.davidmoten.geo.LatLong;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VehicleService {
 
@@ -30,4 +32,13 @@ public class VehicleService {
         return dao.searchVehiclesByLonLatAndDistance(distance, latLong);
     }
 
+    public LatLong getVehicleLocation(String vehicleId) {
+        return dao.getVehiclesLocation(vehicleId);
+    }
+
+    public void updateVehicleLocation(String vehicleId, LatLong latLong) {
+        Map<String, LatLong> newLocation = new HashMap<String, LatLong>(1);
+        newLocation.put(vehicleId, latLong);
+        dao.insertVehicleLocation(newLocation);
+    }
 }
