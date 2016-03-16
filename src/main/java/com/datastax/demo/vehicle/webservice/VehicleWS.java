@@ -54,13 +54,21 @@ public class VehicleWS {
         return Response.status(201).entity(result).build();
     }
 
-
     @PUT
     @Path("/updateVehicleLocation/{vehicle}/{lon}/{lat}")
     @Produces("text/html")
     public Response updateVehicleLocation(@PathParam("vehicle") String vehicle, @PathParam("lon") String lon,
-                                       @PathParam("lat") String lat) {
+                                          @PathParam("lat") String lat) {
         service.updateVehicleLocation(vehicle, new LatLong(Double.parseDouble(lat), Double.parseDouble(lon)));
+        return Response.ok("success").build();
+    }
+
+    @PUT
+    @Path("/addVehicleEvent/{vehicle}/{name}/{value}")
+    @Produces("text/html")
+    public Response addVehicleEvent(@PathParam("vehicle") String vehicle, @PathParam("name") String name,
+                                    @PathParam("value") String value) {
+        service.addVehicleEvent(vehicle, name, value);
         return Response.ok("success").build();
     }
 }

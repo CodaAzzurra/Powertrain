@@ -26,11 +26,14 @@ public class VehicleDao {
     private static String vehicleTable = keyspaceName + ".vehicle_stats";
     private static final String INSERT_INTO_VEHICLE = "insert into " + vehicleTable + " (vehicle_id, time_period, collect_time, lat_long, tile2, speed, acceleration, fuel_level, mileage) values (?,?,?,?,?,?,?,?,?);";
     private static final String QUERY_BY_VEHICLE = "select * from " + vehicleTable + " where vehicle_id = ? and time_period = ?";
+    private static String vehicleEventsTable = keyspaceName + ".vehicle_events";
+    private static final String INSERT_INTO_VEHICLE_EVENT = "insert into " + vehicleEventsTable + " (vehicle_id, time_period, collect_time, event_name, event_value) values (?,?,?,?,?);";
     private static String currentLocationTable = keyspaceName + ".current_location";
     private static final String INSERT_INTO_CURRENTLOCATION = "insert into " + currentLocationTable + "(vehicle_id, tile1, tile2, lat_long, collect_time) values (?,?,?,?,?)";
     private static LocalDateTime now = LocalDateTime.now();
     private Session session;
     private PreparedStatement insertVehicle;
+    private PreparedStatement insertVehicleEvent;
     private PreparedStatement insertCurrentLocation;
     private PreparedStatement queryVehicle;
 
@@ -48,6 +51,7 @@ public class VehicleDao {
         this.session = cluster.connect();
 
         this.insertVehicle = session.prepare(INSERT_INTO_VEHICLE);
+        this.insertVehicleEvent = session.prepare(INSERT_INTO_VEHICLE_EVENT);
         this.insertCurrentLocation = session.prepare(INSERT_INTO_CURRENTLOCATION);
 
         this.queryVehicle = session.prepare(QUERY_BY_VEHICLE);
@@ -81,6 +85,21 @@ public class VehicleDao {
             wrapper.addStatement(insertCurrentLocation.bind(entry.getKey(), tile1, tile2,
                     entry.getValue().getLat() + "," + entry.getValue().getLon(), nowDate));
         }
+        wrapper.executeAsync(this.session);
+    }
+
+    public void addVehicleEvent(String vehicleId, String eventName, String eventValue) {
+        long day = 24 * 60 * 60 * 1000;
+        Date today = new Date((System.currentTimeMillis() / day) * day);
+        AsyncWriterWrapper wrapper = new AsyncWriterWrapper();
+        Random random = new Random();
+
+        // Update time for reading
+        now = now.plusSeconds(10);
+        Instant instant = now.atZone(ZoneId.systemDefault()).toInstant();
+        Date nowDate = Date.from(instant);
+
+        wrapper.addStatement(insertVehicleEvent.bind(vehicleId, today, nowDate, eventName, eventValue));
         wrapper.executeAsync(this.session);
     }
 

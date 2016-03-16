@@ -1,7 +1,5 @@
 package com.datastax.demo.vehicle;
 
-import com.datastax.demo.utils.PropertyHelper;
-import com.datastax.demo.utils.Timer;
 import com.github.davidmoten.geo.LatLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +17,8 @@ public class Main {
 
     public Main() {
 
-        String contactPointsStr = PropertyHelper.getProperty("contactPoints", "localhost");
+        String contactPointsStr = System.getProperty("contactPoints", "localhost");
         this.dao = new VehicleDao(contactPointsStr.split(","));
-
-        Timer timer = new Timer();
-        timer.start();
 
         logger.info("Creating Locations");
         createStartLocations();
