@@ -2,6 +2,7 @@ package com.datastax.demo.vehicle;
 
 import com.datastax.demo.utils.PropertyHelper;
 import com.datastax.demo.utils.Timer;
+import com.datastax.demo.web.StandaloneHttpServer;
 import com.github.davidmoten.geo.LatLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,9 @@ public class Main {
 
     public Main() {
 
+        //Start the server
+        StandaloneHttpServer.kickOff();
+
         String contactPointsStr = PropertyHelper.getProperty("contactPoints", "localhost");
         this.dao = new VehicleDao(contactPointsStr.split(","));
 
@@ -33,6 +37,8 @@ public class Main {
             updateLocations();
             sleep(5);
         }
+
+
     }
 
     private void updateLocations() {

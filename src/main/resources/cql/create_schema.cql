@@ -1,4 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS vehicle_tracking_app WITH replication = {'class':'NetworkTopologyStrategy', 'DC1': 3};
+CREATE KEYSPACE IF NOT EXISTS vehicle_tracking_app WITH replication = {'class':'SimpleStrategy', 'replication_factor': 1};
 
 
 CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_stats (
