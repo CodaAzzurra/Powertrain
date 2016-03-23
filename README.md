@@ -16,7 +16,7 @@ The contact points can take multiple points in the IP,IP,IP (no spaces).
  
 To create the schema, run the following
 
-	mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.utils.SchemaSetup" -DcontactPoints=localhost
+	cqlsh -f  src/main/resources/cql/create_schema.cql
 	
 To create the Solr core, run 
 
@@ -70,4 +70,17 @@ To remove the tables and the schema, run the following.
 
     mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaTeardown"
     
-    
+To update a vehicle pass its Id and location (lon + lat). This will add one if it doesn't already exist
+
+	curl -X PUT http://localhost:8080/vehicle-tracking-app/rest/updateVehicleLocation/1683/22.53956077140064/-0.20225833920426117
+	
+To get a vehicles location (lon + lat)
+
+	curl http://localhost:8080/vehicle-tracking-app/rest/getvehiclelocation/199
+	
+To steer a vehicle just change its location and if it crashes then its location will remain the same
+
+To add a vehicles event
+
+	curl -X PUT http://localhost:8080/vehicle-tracking-app/rest/addVehicleEvent/199/braking/12.5
+

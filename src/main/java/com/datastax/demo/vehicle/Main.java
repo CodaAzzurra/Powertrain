@@ -23,11 +23,8 @@ public class Main {
         //Start the server
         StandaloneHttpServer.kickOff();
 
-        String contactPointsStr = PropertyHelper.getProperty("contactPoints", "localhost");
+        String contactPointsStr = System.getProperty("contactPoints", "localhost");
         this.dao = new VehicleDao(contactPointsStr.split(","));
-
-        Timer timer = new Timer();
-        timer.start();
 
         logger.info("Creating Locations");
         createStartLocations();
@@ -39,6 +36,13 @@ public class Main {
         }
 
 
+    }
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        new Main();
     }
 
     private void updateLocations() {
@@ -112,12 +116,5 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        new Main();
     }
 }

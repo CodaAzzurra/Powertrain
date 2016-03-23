@@ -3,6 +3,9 @@ package com.datastax.demo.vehicle;
 import com.datastax.demo.utils.AsyncWriterWrapper;
 import com.datastax.demo.vehicle.model.Vehicle;
 import com.datastax.driver.core.*;
+import com.datastax.driver.core.policies.DCAwareRoundRobinPolicy;
+import com.datastax.driver.core.policies.DefaultRetryPolicy;
+import com.datastax.driver.core.policies.TokenAwarePolicy;
 import com.github.davidmoten.geo.GeoHash;
 import com.github.davidmoten.geo.LatLong;
 import org.slf4j.Logger;
@@ -19,20 +22,18 @@ import java.util.Map.Entry;
 public class VehicleDao {
 
     private static Logger logger = LoggerFactory.getLogger(VehicleDao.class);
-
-    private Session session;
     private static String keyspaceName = "vehicle_tracking_app";
     private static String vehicleTable = keyspaceName + ".vehicle_stats";
-    private static String currentLocationTable = keyspaceName + ".current_location";
-
     private static final String INSERT_INTO_VEHICLE = "insert into " + vehicleTable + " (vehicle_id, time_period, collect_time, lat_long, tile2, speed, acceleration, fuel_level, mileage) values (?,?,?,?,?,?,?,?,?);";
-    private static final String INSERT_INTO_CURRENTLOCATION = "insert into " + currentLocationTable + "(vehicle_id, tile1, tile2, lat_long, collect_time) values (?,?,?,?,?)";
-
     private static final String QUERY_BY_VEHICLE = "select * from " + vehicleTable + " where vehicle_id = ? and time_period = ?";
-
+    private static String vehicleEventsTable = keyspaceName + ".vehicle_events";
+    private static final String INSERT_INTO_VEHICLE_EVENT = "insert into " + vehicleEventsTable + " (vehicle_id, time_period, collect_time, event_name, event_value) values (?,?,?,?,?);";
+    private static String currentLocationTable = keyspaceName + ".current_location";
+    private static final String INSERT_INTO_CURRENTLOCATION = "insert into " + currentLocationTable + "(vehicle_id, tile1, tile2, lat_long, collect_time) values (?,?,?,?,?)";
     private static LocalDateTime now = LocalDateTime.now();
-
+    private Session session;
     private PreparedStatement insertVehicle;
+    private PreparedStatement insertVehicleEvent;
     private PreparedStatement insertCurrentLocation;
     private PreparedStatement queryVehicle;
 
@@ -41,11 +42,16 @@ public class VehicleDao {
     public VehicleDao(String[] contactPoints) {
 
         Cluster cluster = Cluster.builder()
-                .addContactPoints(contactPoints).build();
+                .addContactPoints(contactPoints)
+                .withRetryPolicy(DefaultRetryPolicy.INSTANCE)
+                .withLoadBalancingPolicy(
+                        new TokenAwarePolicy(DCAwareRoundRobinPolicy.builder().build()))
+                .build();
 
         this.session = cluster.connect();
 
         this.insertVehicle = session.prepare(INSERT_INTO_VEHICLE);
+        this.insertVehicleEvent = session.prepare(INSERT_INTO_VEHICLE_EVENT);
         this.insertCurrentLocation = session.prepare(INSERT_INTO_CURRENTLOCATION);
 
         this.queryVehicle = session.prepare(QUERY_BY_VEHICLE);
@@ -79,6 +85,21 @@ public class VehicleDao {
             wrapper.addStatement(insertCurrentLocation.bind(entry.getKey(), tile1, tile2,
                     entry.getValue().getLat() + "," + entry.getValue().getLon(), nowDate));
         }
+        wrapper.executeAsync(this.session);
+    }
+
+    public void addVehicleEvent(String vehicleId, String eventName, String eventValue) {
+        long day = 24 * 60 * 60 * 1000;
+        Date today = new Date((System.currentTimeMillis() / day) * day);
+        AsyncWriterWrapper wrapper = new AsyncWriterWrapper();
+        Random random = new Random();
+
+        // Update time for reading
+        now = now.plusSeconds(10);
+        Instant instant = now.atZone(ZoneId.systemDefault()).toInstant();
+        Date nowDate = Date.from(instant);
+
+        wrapper.addStatement(insertVehicleEvent.bind(vehicleId, today, nowDate, eventName, eventValue));
         wrapper.executeAsync(this.session);
     }
 
@@ -146,11 +167,29 @@ public class VehicleDao {
         return vehicleMovements;
     }
 
+    public LatLong getVehiclesLocation(String vehicleId) {
+        String cql = "select lat_long from " + currentLocationTable + " where vehicle_id = '" + vehicleId + "'";
+        ResultSet resultSet = session.execute(cql);
+        List<Row> all = resultSet.all();
+        int rows = all.size();
+
+        switch (rows) {
+            case 0:
+                return null;
+            case 1:
+                String lat_long = all.get(0).getString("lat_long");
+                Double lat = Double.parseDouble(lat_long.substring(0, lat_long.lastIndexOf(",")));
+                Double lng = Double.parseDouble(lat_long.substring(lat_long.lastIndexOf(",") + 1));
+                return new LatLong(lng, lat);
+            default:
+                throw new RuntimeException(String.format("Not expecting %d rows\n", rows));
+        }
+    }
+
     private Vehicle getVehicleFromLocation(String vehicleId, Row row) {
         Date collectTime = row.getTimestamp("collect_time");
         String lat_long = row.getString("lat_long");
         String tile1 = row.getString("tile1");
-        String tile2 = row.getString("tile2");
         Double lat = Double.parseDouble(lat_long.substring(0, lat_long.lastIndexOf(",")));
         Double lng = Double.parseDouble(lat_long.substring(lat_long.lastIndexOf(",") + 1));
 

@@ -6,10 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jws.WebService;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.text.SimpleDateFormat;
@@ -29,9 +26,7 @@ public class VehicleWS {
     @Path("/getmovements/{vehicle}/{date}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMovements(@PathParam("vehicle") String vehicle, @PathParam("date") String dateString) {
-
         List<Vehicle> result = service.getVehicleMovements(vehicle, dateString);
-
         return Response.status(201).entity(result).build();
     }
 
@@ -39,9 +34,7 @@ public class VehicleWS {
     @Path("/getvehicles/{tile}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getVehiclesByTile(@PathParam("tile") String tile) {
-
         List<Vehicle> result = service.getVehiclesByTile(tile);
-
         return Response.status(201).entity(result).build();
     }
 
@@ -49,9 +42,33 @@ public class VehicleWS {
     @Path("/search/{lat}/{lon}/{distance}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchForVehicles(@PathParam("lat") double lat, @PathParam("lon") double lon, @PathParam("distance") int distance) {
-
         List<Vehicle> result = service.searchVehiclesByLonLatAndDistance(distance, new LatLong(lat, lon));
-
         return Response.status(201).entity(result).build();
+    }
+
+    @GET
+    @Path("/getvehiclelocation/{vehicle}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getVehicleLocation(@PathParam("vehicle") String vehicle) {
+        LatLong result = service.getVehicleLocation(vehicle);
+        return Response.status(201).entity(result).build();
+    }
+
+    @PUT
+    @Path("/updateVehicleLocation/{vehicle}/{lon}/{lat}")
+    @Produces("text/html")
+    public Response updateVehicleLocation(@PathParam("vehicle") String vehicle, @PathParam("lon") String lon,
+                                          @PathParam("lat") String lat) {
+        service.updateVehicleLocation(vehicle, new LatLong(Double.parseDouble(lat), Double.parseDouble(lon)));
+        return Response.ok("success").build();
+    }
+
+    @PUT
+    @Path("/addVehicleEvent/{vehicle}/{name}/{value}")
+    @Produces("text/html")
+    public Response addVehicleEvent(@PathParam("vehicle") String vehicle, @PathParam("name") String name,
+                                    @PathParam("value") String value) {
+        service.addVehicleEvent(vehicle, name, value);
+        return Response.ok("success").build();
     }
 }

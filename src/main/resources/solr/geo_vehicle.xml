@@ -1,28 +1,29 @@
 <schema name="VehicleStats" version="1.1">
-  <types>
-  	<fieldType name="string" class="solr.TextField">
-		<analyzer>
-			<filter class="solr.ClassicFilterFactory"/>
-			<tokenizer class="solr.NGramTokenizerFactory" minGramSize="1" maxGramSize="1"/>
-		</analyzer>
-	</fieldType>		
-	<fieldType name="text" class="solr.TextField">
-	  		<analyzer>      		  	      		
-	    		<tokenizer class="solr.StandardTokenizerFactory"/>																					
-	  		</analyzer>
-		</fieldType>
-	<fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
-	<fieldType name="location"  class="solr.LatLonType" subFieldSuffix="_coordinate"/>
-	<fieldType name="tdouble" class="solr.TrieDoubleField" precisionStep="8" omitNorms="true" positionIncrementGap="0"/>
-		
-   </types>
-   <fields>
-    <field name="vehicle_id"  type="text" indexed="true"  stored="true"/>
-	<field name="time_period"  type="date" indexed="true"  stored="true"/>
- 	<field name="collect_time"  type="date" indexed="true"  stored="true"/>
- 	<field name="lat_long" type="location" indexed="true"  stored="true"  multiValued="false" />
-    <dynamicField name="*_coordinate"  type="tdouble" indexed="true"  stored="false"/>
-  </fields>
-  <defaultSearchField>vehicle_id</defaultSearchField>
-  <uniqueKey>(vehicle_id, time_period,collect_time)</uniqueKey>
+    <types>
+        <fieldType name="string" class="solr.TextField">
+            <analyzer>
+                <filter class="solr.ClassicFilterFactory"/>
+                <tokenizer class="solr.NGramTokenizerFactory" minGramSize="1" maxGramSize="1"/>
+            </analyzer>
+        </fieldType>
+        <fieldType name="text" class="solr.TextField">
+            <analyzer>
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+            </analyzer>
+        </fieldType>
+        <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
+        <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+        <fieldType name="tdouble" class="solr.TrieDoubleField" precisionStep="8" omitNorms="true"
+                   positionIncrementGap="0"/>
+
+    </types>
+    <fields>
+        <field name="vehicle_id" type="text" indexed="true" stored="true"/>
+        <field name="time_period" type="date" indexed="true" stored="true"/>
+        <field name="collect_time" type="date" indexed="true" stored="true"/>
+        <field name="lat_long" type="location" indexed="true" stored="true" multiValued="false"/>
+        <dynamicField name="*_coordinate" type="tdouble" indexed="true" stored="false"/>
+    </fields>
+    <defaultSearchField>vehicle_id</defaultSearchField>
+    <uniqueKey>(vehicle_id, time_period,collect_time)</uniqueKey>
 </schema>
