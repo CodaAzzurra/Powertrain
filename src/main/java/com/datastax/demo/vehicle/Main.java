@@ -1,6 +1,5 @@
 package com.datastax.demo.vehicle;
 
-import com.datastax.demo.utils.PropertyHelper;
 import com.datastax.demo.utils.Timer;
 import com.datastax.demo.web.StandaloneHttpServer;
 import com.github.davidmoten.geo.LatLong;
