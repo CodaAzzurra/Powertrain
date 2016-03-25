@@ -44,6 +44,7 @@ public class VehicleDao {
         Cluster cluster = Cluster.builder()
                 .addContactPoints(contactPoints)
                 .withRetryPolicy(DefaultRetryPolicy.INSTANCE)
+                // .withCredentials("cassandra", "cassandra")
                 .withLoadBalancingPolicy(
                         new TokenAwarePolicy(DCAwareRoundRobinPolicy.builder().build()))
                 .build();
