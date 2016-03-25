@@ -631,7 +631,13 @@ bkcore.hexgl.ShipControls.prototype.collisionCheck = function(dt)
 	if(collision.r < 255)
 	{
 		bkcore.Audio.play('crash');
-        
+       
+
+        $.ajax({
+            url: "/vehicle-tracking-app/rest/addVehicleEvent/test/crash/"+this.maxSpeed,
+        }).done(function() {
+            console.log('Boom saved')
+        });
         console.log('Boom')
 
 		// Shield
