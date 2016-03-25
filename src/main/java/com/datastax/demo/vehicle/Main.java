@@ -1,6 +1,5 @@
 package com.datastax.demo.vehicle;
 
-import com.datastax.demo.utils.Timer;
 import com.datastax.demo.web.StandaloneHttpServer;
 import com.github.davidmoten.geo.LatLong;
 import org.slf4j.Logger;
@@ -22,7 +21,7 @@ public class Main {
         //Start the server
         StandaloneHttpServer.kickOff();
 
-        String contactPointsStr = System.getProperty("contactPoints", "localhost");
+        String contactPointsStr = System.getProperty("contactPoints", "127.0.0.1");
         this.dao = new VehicleDao(contactPointsStr.split(","));
 
         logger.info("Creating Locations");

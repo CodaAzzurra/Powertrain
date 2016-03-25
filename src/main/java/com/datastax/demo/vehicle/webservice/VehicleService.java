@@ -13,7 +13,7 @@ public class VehicleService {
     private VehicleDao dao;
 
     public VehicleService() {
-        String contactPointsStr = System.getProperty("contactPoints", "localhost");
+        String contactPointsStr = System.getProperty("contactPoints", "127.0.0.1");
         this.dao = new VehicleDao(contactPointsStr.split(","));
     }
 

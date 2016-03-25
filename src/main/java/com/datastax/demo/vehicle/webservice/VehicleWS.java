@@ -54,7 +54,7 @@ public class VehicleWS {
         return Response.status(201).entity(result).build();
     }
 
-    @PUT
+    @GET
     @Path("/updateVehicleLocation/{vehicle}/{lon}/{lat}")
     @Produces("text/html")
     public Response updateVehicleLocation(@PathParam("vehicle") String vehicle, @PathParam("lon") String lon,
@@ -63,7 +63,7 @@ public class VehicleWS {
         return Response.ok("success").build();
     }
 
-    @PUT
+    @GET
     @Path("/addVehicleEvent/{vehicle}/{name}/{value}")
     @Produces("text/html")
     public Response addVehicleEvent(@PathParam("vehicle") String vehicle, @PathParam("name") String name,
