@@ -12,4 +12,4 @@ Build the application using command :
 
 then submit the application using command :
 
-dse spark-submit target/scala-2.10/powertrain_2.10-1.0.jar
+	dse spark-submit target/scala-2.10/powertrain_2.10-1.0.jar
