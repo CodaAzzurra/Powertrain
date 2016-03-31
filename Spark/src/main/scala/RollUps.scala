@@ -1,10 +1,8 @@
-/**
-  * An Example application
-  */
 
 import org.apache.spark._
 import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.sql.functions._
+import org.apache.spark.sql.cassandra._
 
 import com.datastax.spark.connector.cql.CassandraConnector
 import com.datastax.spark.connector._
@@ -23,13 +21,17 @@ object Example extends App {
   import sqlContext.implicits._
 
   val result = sqlContext.sql("select * from vehicle_tracking_app.vehicle_stats")
-  
-  result.groupBy($"vehicle_id",$"time_period")
-        .agg(avg(result.col("acceleration")),min(result.col("acceleration")),max(result.col("acceleration")),
-        avg(result.col("fuel_level")),min(result.col("fuel_level")),max(result.col("fuel_level")),
-        min(result.col("mileage")),max(result.col("mileage")),
-         avg(result.col("speed")),min(result.col("speed")),max(result.col("speed")))
-        .show()
+
+  val result2 = result.groupBy($"vehicle_id",$"time_period")
+        .agg(avg(result.col("acceleration")) as "acceleration_avg",min(result.col("acceleration")) as "acceleration_min",max(result.col("acceleration")) as "acceleration_max",
+        avg(result.col("fuel_level")) as "fuel_level_avg",min(result.col("fuel_level")) as "fuel_level_min",max(result.col("fuel_level")) as "fuel_level_max",
+        min(result.col("mileage")) as "mileage_min",max(result.col("mileage")) as "mileage_max",
+         avg(result.col("speed")) as "speed_avg",min(result.col("speed")) as "speed_min",max(result.col("speed"))as "speed_max")
+
+  result2.write
+  .format("org.apache.spark.sql.cassandra")
+  .options(Map( "table" -> "vehicle_stats_history", "keyspace" -> "vehicle_tracking_app"))
+  .save()
 
 // +----------+--------------------+------------------+-----------------+-----------------+-------------------+---------------+---------------+------------+------------+------------------+----------+----------+
 // |vehicle_id|         time_period| AVG(acceleration)|MIN(acceleration)|MAX(acceleration)|    AVG(fuel_level)|MIN(fuel_level)|MAX(fuel_level)|MIN(mileage)|MAX(mileage)|        AVG(speed)|MIN(speed)|MAX(speed)|
@@ -58,5 +60,7 @@ object Example extends App {
 
   sc.stop()
   sys.exit(0)
+
+  //dse spark-submit target/scala-2.10/sbtvsdse_2.10-1.0.jar
 }
 

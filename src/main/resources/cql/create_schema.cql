@@ -26,10 +26,27 @@ TRUNCATE vehicle_tracking_app.vehicle_stats;
 
 // Create table to store historical vehicle statistics
 
-CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_stats_history (
+/*CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_stats_history (
     vehicle_id text,
     time_period timestamp,
     vehicle_data blob,
+    PRIMARY KEY (vehicle_id, time_period)
+) WITH CLUSTERING ORDER BY (time_period DESC);*/
+
+CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_stats_history (
+    vehicle_id text,
+    time_period timestamp,
+    acceleration_avg double,
+    acceleration_min int,
+    acceleration_max int,
+    fuel_level_avg double,
+    fuel_level_min float,
+    fuel_level_max float,
+    mileage_min float,
+    mileage_max float,
+    speed_avg double,
+    speed_min int,
+    speed_max int,
     PRIMARY KEY (vehicle_id, time_period)
 ) WITH CLUSTERING ORDER BY (time_period DESC);
 
@@ -60,4 +77,3 @@ CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_events (
 ) WITH CLUSTERING ORDER BY (collect_time DESC);
 
 TRUNCATE vehicle_tracking_app.vehicle_events;
-
