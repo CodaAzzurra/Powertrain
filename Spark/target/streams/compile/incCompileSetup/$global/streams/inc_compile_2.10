@@ -1,0 +1,132 @@
+format version: 5
+output mode:
+1 items
+0 -> single
+output directories:
+1 items
+output dir -> /Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/target/scala-2.10/classes
+compile options:
+0 items
+javac options:
+0 items
+compiler version:
+1 items
+0 -> 2.10.6
+compile order:
+1 items
+0 -> Mixed
+name hashing:
+1 items
+0 -> true
+products:
+3 items
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> /Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/target/scala-2.10/classes/Example$.class
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> /Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/target/scala-2.10/classes/Example$delayedInit$body.class
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> /Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/target/scala-2.10/classes/Example.class
+binary dependencies:
+6 items
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/rt.jar
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> /Users/ankurthuse/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.6.jar
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> /Users/ankurthuse/dse/resources/spark/lib/spark-cassandra-connector_2.10-1.4.1.jar
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> /Users/ankurthuse/dse/resources/spark/lib/spark-core_2.10-1.4.2.2.jar
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> /Users/ankurthuse/dse/resources/spark/lib/spark-hive_2.10-1.4.2.2.jar
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> /Users/ankurthuse/dse/resources/spark/lib/spark-sql_2.10-1.4.2.2.jar
+direct source dependencies:
+0 items
+direct external dependencies:
+0 items
+public inherited source dependencies:
+0 items
+public inherited external dependencies:
+0 items
+member reference internal dependencies:
+0 items
+member reference external dependencies:
+0 items
+inheritance internal dependencies:
+0 items
+inheritance external dependencies:
+0 items
+class names:
+3 items
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> Example
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> Example$
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> Example$delayedInit$body
+used names:
+37 items
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> $
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> <init>
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> App
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> CassandraConnector
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> Example
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> HiveContext
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> SparkConf
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> SparkContext
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> StringContext
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> agg
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> apache
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> avg
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> col
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> com
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> conf
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> connector
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> cql
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> datastax
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> exit
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> functions
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> groupBy
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> hive
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> implicits
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> max
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> min
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> org
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> package
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> result
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> sc
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> scala
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> setAppName
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> show
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> spark
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> sql
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> sqlContext
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> stop
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> sys
+product stamps:
+3 items
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/target/scala-2.10/classes/Example$.class -> lastModified(1459383979000)
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/target/scala-2.10/classes/Example$delayedInit$body.class -> lastModified(1459383979000)
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/target/scala-2.10/classes/Example.class -> lastModified(1459383979000)
+source stamps:
+1 items
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> hash(98d4e043d319bbad71d06448aca10b9b2091d68c)
+binary stamps:
+6 items
+/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/rt.jar -> lastModified(1418879070000)
+/Users/ankurthuse/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.6.jar -> lastModified(1442568926000)
+/Users/ankurthuse/dse/resources/spark/lib/spark-cassandra-connector_2.10-1.4.1.jar -> lastModified(1452596388000)
+/Users/ankurthuse/dse/resources/spark/lib/spark-core_2.10-1.4.2.2.jar -> lastModified(1452596388000)
+/Users/ankurthuse/dse/resources/spark/lib/spark-hive_2.10-1.4.2.2.jar -> lastModified(1452596388000)
+/Users/ankurthuse/dse/resources/spark/lib/spark-sql_2.10-1.4.2.2.jar -> lastModified(1452596388000)
+class names:
+6 items
+/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/rt.jar -> java.lang.Object
+/Users/ankurthuse/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.6.jar -> scala.App
+/Users/ankurthuse/dse/resources/spark/lib/spark-cassandra-connector_2.10-1.4.1.jar -> com.datastax.spark.connector.cql.CassandraConnector$
+/Users/ankurthuse/dse/resources/spark/lib/spark-core_2.10-1.4.2.2.jar -> org.apache.spark.SparkContext
+/Users/ankurthuse/dse/resources/spark/lib/spark-hive_2.10-1.4.2.2.jar -> org.apache.spark.sql.hive.HiveContext$
+/Users/ankurthuse/dse/resources/spark/lib/spark-sql_2.10-1.4.2.2.jar -> org.apache.spark.sql.functions$
+internal apis:
+1 items
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> 
+rO0ABXNyABB4c2J0aS5hcGkuU291cmNlFlpwRASfbtoCAAZJAAdhcGlIYXNoWgAIaGFzTWFjcm9MABhfaW50ZXJuYWxPbmx5X25hbWVIYXNoZXN0ACRMeHNidGkvYXBpL19pbnRlcm5hbE9ubHlfTmFtZUhhc2hlcztMAANhcGl0ABVMeHNidGkvYXBpL1NvdXJjZUFQSTtMAAtjb21waWxhdGlvbnQAF0x4c2J0aS9hcGkvQ29tcGlsYXRpb247WwAEaGFzaHQAAltCeHC+rDmgAHNyACJ4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaGVzVNq+mfrU7EwCAAJbAA9pbXBsaWNpdE1lbWJlcnN0ACNbTHhzYnRpL2FwaS9faW50ZXJuYWxPbmx5X05hbWVIYXNoO1sADnJlZ3VsYXJNZW1iZXJzcQB+AAd4cHVyACNbTHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoO0lagLbdlov0AgAAeHAAAAAAdXEAfgAJAAAAHnNyACB4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaFsO9SJ2OFfPAgACSQAEaGFzaEwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cKpu0y50AAZub3RpZnlzcQB+AAzyHL3pdAAEd2FpdHNxAH4ADFQlzW10AA0kYXNJbnN0YW5jZU9mc3EAfgAMB422VnQABmVxdWFsc3NxAH4ADMDNCo10AAxhc0luc3RhbmNlT2ZzcQB+AAxfBWoudAAOZXhlY3V0aW9uU3RhcnRzcQB+AAwnP54TdAAGcmVzdWx0c3EAfgAMdb+TzHQADHN5bmNocm9uaXplZHNxAH4ADNM8VjZ0AAJzY3NxAH4ADIzFxCl0AA0kaXNJbnN0YW5jZU9mc3EAfgAMST+7HXQABV9hcmdzc3EAfgAMexpZ4HQABG1haW5zcQB+AAxBn8K4dAAIaW5pdENvZGVzcQB+AAw7RsCBdAAJbm90aWZ5QWxsc3EAfgAMRPLanHQABGNvbmZzcQB+AAx6tGPpdAAMaXNJbnN0YW5jZU9mc3EAfgAM6yOWcHQAAj09c3EAfgAM8vIw+XQACnNxbENvbnRleHRzcQB+AAzyMqGIdAAFY2xvbmVzcQB+AAzsJqNGdAAHRXhhbXBsZXNxAH4ADNnJSXh0AAh0b1N0cmluZ3NxAH4ADBasHUZ0AARhcmdzc3EAfgAMu0bt03QAAiE9c3EAfgAMpgCvP3QACGdldENsYXNzc3EAfgAM6lYy9nQAAm5lc3EAfgAMsqfG3nQAAmVxc3EAfgAM9IYDMHQAC2RlbGF5ZWRJbml0c3EAfgAM5kcTenQAAiMjc3EAfgAMcNKvanQACGZpbmFsaXplc3EAfgAMeoCrBnQACGhhc2hDb2Rlc3IAE3hzYnRpLmFwaS5Tb3VyY2VBUEm5Xqf5KSM4pAIAAlsAC2RlZmluaXRpb25zdAAXW0x4c2J0aS9hcGkvRGVmaW5pdGlvbjtbAAhwYWNrYWdlc3QAFFtMeHNidGkvYXBpL1BhY2thZ2U7eHB1cgAXW0x4c2J0aS5hcGkuRGVmaW5pdGlvbjuIyVzntONeDgIAAHhwAAAAAXNyABN4c2J0aS5hcGkuQ2xhc3NMaWtlgzQcod+wl2wCAARMAA5kZWZpbml0aW9uVHlwZXQAGkx4c2J0aS9hcGkvRGVmaW5pdGlvblR5cGU7WwAQc2F2ZWRBbm5vdGF0aW9uc3QAE1tMamF2YS9sYW5nL1N0cmluZztMAAhzZWxmVHlwZXQAEEx4c2J0aS9hcGkvTGF6eTtMAAlzdHJ1Y3R1cmVxAH4AU3hyACF4c2J0aS5hcGkuUGFyYW1ldGVyaXplZERlZmluaXRpb275EW6x1VA84gIAAVsADnR5cGVQYXJhbWV0ZXJzdAAaW0x4c2J0aS9hcGkvVHlwZVBhcmFtZXRlcjt4cgAUeHNidGkuYXBpLkRlZmluaXRpb26HKhvocULjRgIABEwABmFjY2Vzc3QAEkx4c2J0aS9hcGkvQWNjZXNzO1sAC2Fubm90YXRpb25zdAAXW0x4c2J0aS9hcGkvQW5ub3RhdGlvbjtMAAltb2RpZmllcnN0ABVMeHNidGkvYXBpL01vZGlmaWVycztMAARuYW1lcQB+AA14cHNyABB4c2J0aS5hcGkuUHVibGljulg9rmwtYEICAAB4cgAQeHNidGkuYXBpLkFjY2Vzc91imvgdYzFIAgAAeHB1cgAXW0x4c2J0aS5hcGkuQW5ub3RhdGlvbjvrl+sZEPaNSAIAAHhwAAAAAHNyABN4c2J0aS5hcGkuTW9kaWZpZXJzxxETIWmc3CQCAAFCAAVmbGFnc3hwAHEAfgA1dXIAGltMeHNidGkuYXBpLlR5cGVQYXJhbWV0ZXI72W0mDyid8rYCAAB4cAAAAAB+cgAYeHNidGkuYXBpLkRlZmluaXRpb25UeXBlAAAAAAAAAAASAAB4cgAOamF2YS5sYW5nLkVudW0AAAAAAAAAABIAAHhwdAAGTW9kdWxldXIAE1tMamF2YS5sYW5nLlN0cmluZzut0lbn6R17RwIAAHhwAAAAAHNyABN4c2J0aS5TYWZlTGF6eSRJbXBsUAIuk5eXQD8CAANaAAhiaXRtYXAkMEwAAl90dAASTGphdmEvbGFuZy9PYmplY3Q7TAAEZXZhbHQAEUxzY2FsYS9GdW5jdGlvbjA7eHIAFnhzYnRpLmFwaS5BYnN0cmFjdExhennTd7UBX7vnoAIAAHhwAHBzcgAgeHNidGkuU2FmZUxhenkkJGFub25mdW4kc3RyaWN0JDEAAAAAAAAAAAIAAUwAB3ZhbHVlJDFxAH4Aa3hwc3IAE3hzYnRpLmFwaS5FbXB0eVR5cGW8/Z5GSTuJJAIAAHhyABR4c2J0aS5hcGkuU2ltcGxlVHlwZXJ4YoghI79AAgAAeHIADnhzYnRpLmFwaS5UeXBlP2rZIRZJqsoCAAB4cHNxAH4AagBwc3EAfgBvc3IAE3hzYnRpLmFwaS5TdHJ1Y3R1cmWpqvmAk2/YAAIAA0wACGRlY2xhcmVkcQB+AFNMAAlpbmhlcml0ZWRxAH4AU0wAB3BhcmVudHNxAH4AU3hxAH4Ac3NxAH4AagBwc3EAfgBvdXEAfgBOAAAAAHNxAH4AagBwc3EAfgBvdXEAfgBOAAAAAXNyAA14c2J0aS5hcGkuRGVmUr6f4ny0NmkCAAJMAApyZXR1cm5UeXBldAAQTHhzYnRpL2FwaS9UeXBlO1sAD3ZhbHVlUGFyYW1ldGVyc3QAGltMeHNidGkvYXBpL1BhcmFtZXRlckxpc3Q7eHEAfgBUcQB+AF11cQB+AF4AAAAAc3EAfgBgAHEAfgAldXEAfgBiAAAAAHNyABR4c2J0aS5hcGkuUHJvamVjdGlvbvPSjVTpRaQtAgACTAACaWRxAH4ADUwABnByZWZpeHQAFkx4c2J0aS9hcGkvU2ltcGxlVHlwZTt4cQB+AHJ0AARVbml0c3IAE3hzYnRpLmFwaS5TaW5nbGV0b278p1/4z1bkRgIAAUwABHBhdGh0ABBMeHNidGkvYXBpL1BhdGg7eHEAfgByc3IADnhzYnRpLmFwaS5QYXRomz1cCM6lJ4QCAAFbAApjb21wb25lbnRzdAAaW0x4c2J0aS9hcGkvUGF0aENvbXBvbmVudDt4cHVyABpbTHhzYnRpLmFwaS5QYXRoQ29tcG9uZW50O0PaCXQtZxZ0AgAAeHAAAAACc3IADHhzYnRpLmFwaS5JZJgybIs3U8RAAgABTAACaWRxAH4ADXhyABd4c2J0aS5hcGkuUGF0aENvbXBvbmVudF+aIlsuhp+8AgAAeHB0AAVzY2FsYXNyAA54c2J0aS5hcGkuVGhpc9sJ7abMWkBcAgAAeHEAfgCTdXIAGltMeHNidGkuYXBpLlBhcmFtZXRlckxpc3Q79dM6HfKzcO4CAAB4cAAAAAFzcgAXeHNidGkuYXBpLlBhcmFtZXRlckxpc3TWxbwcZEl04wIAAloACmlzSW1wbGljaXRbAApwYXJhbWV0ZXJzdAAcW0x4c2J0aS9hcGkvTWV0aG9kUGFyYW1ldGVyO3hwAHVyABxbTHhzYnRpLmFwaS5NZXRob2RQYXJhbWV0ZXI7z7jFXaXdtW0CAAB4cAAAAAFzcgAZeHNidGkuYXBpLk1ldGhvZFBhcmFtZXRlch9FrhfTSbDqAgAEWgAKaGFzRGVmYXVsdEwACG1vZGlmaWVydAAdTHhzYnRpL2FwaS9QYXJhbWV0ZXJNb2RpZmllcjtMAARuYW1lcQB+AA1MAAN0cGVxAH4AgHhwAH5yABt4c2J0aS5hcGkuUGFyYW1ldGVyTW9kaWZpZXIAAAAAAAAAABIAAHhxAH4AZXQABVBsYWlucQB+ADlzcgAXeHNidGkuYXBpLlBhcmFtZXRlcml6ZWQWbO5pA8m7fwIAAkwACGJhc2VUeXBlcQB+AIdbAA10eXBlQXJndW1lbnRzdAARW0x4c2J0aS9hcGkvVHlwZTt4cQB+AHJzcQB+AIZ0AAVBcnJheXEAfgCMdXIAEVtMeHNidGkuYXBpLlR5cGU7dP+lWnv56UECAAB4cAAAAAFzcQB+AIZ0AAZTdHJpbmdzcQB+AIpzcQB+AI11cQB+AJAAAAADc3EAfgCSdAAEamF2YXNxAH4AknQABGxhbmdxAH4Al3NxAH4AagBwc3EAfgBvdXEAfgCqAAAABHNxAH4AhnQAA0FwcHEAfgCMc3EAfgCGdAALRGVsYXllZEluaXRxAH4AjHNxAH4AhnQABk9iamVjdHEAfgCuc3EAfgCGdAADQW55cQB+AIx1cgAUW0x4c2J0aS5hcGkuUGFja2FnZTtbExk3cKcnoQIAAHhwAAAAAHNyABV4c2J0aS5hcGkuQ29tcGlsYXRpb27t+uDDauigQgIAAkoACXN0YXJ0VGltZVsAB291dHB1dHN0ABpbTHhzYnRpL2FwaS9PdXRwdXRTZXR0aW5nO3hwAAABU8oQQnt1cgAaW0x4c2J0aS5hcGkuT3V0cHV0U2V0dGluZzt/asLzp4elQgIAAHhwAAAAAXNyABd4c2J0aS5hcGkuT3V0cHV0U2V0dGluZ3rZmkd0+x17AgACTAAPb3V0cHV0RGlyZWN0b3J5cQB+AA1MAA9zb3VyY2VEaXJlY3RvcnlxAH4ADXhwdABhL1VzZXJzL2Fua3VydGh1c2UvRG9jdW1lbnRzL1Byb2plY3RzL1Bvd2VydHJhaW4tbWFzdGVyL1Bvd2VydHJhaW4vU3BhcmsvdGFyZ2V0L3NjYWxhLTIuMTAvY2xhc3Nlc3QAAS91cgACW0Ks8xf4BghU4AIAAHhwAAAAFJjU4EPTGbutcdBkSKyhC5sgkdaM
+external apis:
+0 items
+source infos:
+1 items
+/Users/ankurthuse/Documents/Projects/Powertrain-master/Powertrain/Spark/src/main/scala/RollUps.scala -> 
+AAAAAAAAAAA=
+compilations:
+3 items
+0 -> rO0ABXNyABV4c2J0aS5hcGkuQ29tcGlsYXRpb27t+uDDauigQgIAAkoACXN0YXJ0VGltZVsAB291dHB1dHN0ABpbTHhzYnRpL2FwaS9PdXRwdXRTZXR0aW5nO3hwAAABU6mVMP51cgAaW0x4c2J0aS5hcGkuT3V0cHV0U2V0dGluZzt/asLzp4elQgIAAHhwAAAAAXNyABd4c2J0aS5hcGkuT3V0cHV0U2V0dGluZ3rZmkd0+x17AgACTAAPb3V0cHV0RGlyZWN0b3J5dAASTGphdmEvbGFuZy9TdHJpbmc7TAAPc291cmNlRGlyZWN0b3J5cQB+AAZ4cHQAYy9Vc2Vycy9hbmt1cnRodXNlL0RvY3VtZW50cy9Qcm9qZWN0cy9TcGFya0J1aWxkRXhhbXBsZXMtbWFzdGVyL05CU1Jld3JpdGUvdGFyZ2V0L3NjYWxhLTIuMTAvY2xhc3Nlc3QAAS8=
+1 -> rO0ABXNyABV4c2J0aS5hcGkuQ29tcGlsYXRpb27t+uDDauigQgIAAkoACXN0YXJ0VGltZVsAB291dHB1dHN0ABpbTHhzYnRpL2FwaS9PdXRwdXRTZXR0aW5nO3hwAAABU8oKBUp1cgAaW0x4c2J0aS5hcGkuT3V0cHV0U2V0dGluZzt/asLzp4elQgIAAHhwAAAAAXNyABd4c2J0aS5hcGkuT3V0cHV0U2V0dGluZ3rZmkd0+x17AgACTAAPb3V0cHV0RGlyZWN0b3J5dAASTGphdmEvbGFuZy9TdHJpbmc7TAAPc291cmNlRGlyZWN0b3J5cQB+AAZ4cHQAYy9Vc2Vycy9hbmt1cnRodXNlL0RvY3VtZW50cy9Qcm9qZWN0cy9TcGFya0J1aWxkRXhhbXBsZXMtbWFzdGVyL1Bvd2VyVHJhaW4vdGFyZ2V0L3NjYWxhLTIuMTAvY2xhc3Nlc3QAAS8=
+2 -> rO0ABXNyABV4c2J0aS5hcGkuQ29tcGlsYXRpb27t+uDDauigQgIAAkoACXN0YXJ0VGltZVsAB291dHB1dHN0ABpbTHhzYnRpL2FwaS9PdXRwdXRTZXR0aW5nO3hwAAABU8oQQnt1cgAaW0x4c2J0aS5hcGkuT3V0cHV0U2V0dGluZzt/asLzp4elQgIAAHhwAAAAAXNyABd4c2J0aS5hcGkuT3V0cHV0U2V0dGluZ3rZmkd0+x17AgACTAAPb3V0cHV0RGlyZWN0b3J5dAASTGphdmEvbGFuZy9TdHJpbmc7TAAPc291cmNlRGlyZWN0b3J5cQB+AAZ4cHQAYS9Vc2Vycy9hbmt1cnRodXNlL0RvY3VtZW50cy9Qcm9qZWN0cy9Qb3dlcnRyYWluLW1hc3Rlci9Qb3dlcnRyYWluL1NwYXJrL3RhcmdldC9zY2FsYS0yLjEwL2NsYXNzZXN0AAEv
