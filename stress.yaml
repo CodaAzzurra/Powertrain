@@ -56,33 +56,34 @@ table: vehicle_stats
 #
 columnspec:
   - name: vehicle_id
-    size: uniform(1..10)
-    population: uniform(1..1M)     # the range of unique values to select for the field (default is 100Billion)
+    size: uniform(1..10)          # Vehicle Id's quite short
+    population: uniform(1..100M)  # The range of unique values to select for the field (default is 100Billion)
+
   - name: time_period
-    cluster: uniform(20..40)
+
   - name: collect_time
-    cluster: uniform(20..40)
+    cluster: fixed(28800)         # Number of collections per, 1 every 5s for a day
+
   - name: acceleration
-    cluster: uniform(20..40)
+
   - name: fuel_level
-    cluster: uniform(20..40)
+
   - name: lat_long
-    cluster: uniform(20..40)
+    size: fixed(20)
+
   - name: mileage
-    cluster: uniform(20..40)
+
   - name: speed
-    population: gaussian(1..1000)
-    cluster: uniform(1..4)
+
   - name: tile2
-    population: gaussian(1..1000)
-    cluster: uniform(1..4)
+    size: fixed(20)
 
 insert:
-  partitions: uniform(1..50)      # number of unique partitions to update in a single operation
+  partitions: fixed(1)      # number of unique partitions to update in a single operation
                                   # if batchcount > 1, multiple batches will be used but all partitions will
                                   # occur in all batches (unless they finish early); only the row counts will vary
-  batchtype: LOGGED               # type of batch to use
-  select: uniform(1..10)/10       # uniform chance any single generated CQL row will be visited in a partition;
+  batchtype: UNLOGGED             # type of batch to use
+  select: fixed(1)/100          # uniform chance any single generated CQL row will be visited in a partition;
                                   # generated for each partition independently, each time we visit it
 
 #
