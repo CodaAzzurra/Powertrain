@@ -6,9 +6,10 @@
     return document.getElementById(_);
   };
 
-  init = function(controlType, quality, hud, godmode) {
+  init = function(controlType, quality, hud, godmode, name) {
     var hexGL, progressbar;
     hexGL = new bkcore.hexgl.HexGL({
+      player: name, 
       document: document,
       width: window.innerWidth,
       height: window.innerHeight,
@@ -64,10 +65,15 @@
     _fn(a);
   }
 
-  $('step-2').onclick = function() {
-    $('step-2').style.display = 'none';
-    $('step-3').style.display = 'block';
-    return init(s[0][3], s[1][3], s[2][3], s[3][3]);
+  $('playerName').onchange = function() {
+    if ( $('playerName').value == "insert name here" || $('playerName').value == "" ){
+        console.log ("name please")
+    }
+    else{
+        $('step-2').style.display = 'none';
+        $('step-3').style.display = 'block';
+        return init(s[0][3], s[1][3], s[2][3], s[3][3], $('playerName').value );
+    }
   };
 
   $('step-5').onclick = function() {

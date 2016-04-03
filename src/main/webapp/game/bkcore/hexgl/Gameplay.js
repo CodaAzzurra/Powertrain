@@ -74,7 +74,7 @@ bkcore.hexgl.Gameplay = function(opts)
 			else
             {
                 $.ajax({
-                    url: "/vehicle-tracking-app/rest/addVehicleEvent/test/lap/"+self.lap + "|"+ Date(),
+                    url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player +"/lap/"+self.lap + "|"+ Date(),
                 }).done(function() { 
                     console.log('Lap saved')
                 });
@@ -172,7 +172,7 @@ bkcore.hexgl.Gameplay.prototype.end = function(result)
     if(result == this.results.FINISH)
     {
         $.ajax({
-            url: "/vehicle-tracking-app/rest/addVehicleEvent/test/finished/"+Date(),
+            url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player +"/finished/"+Date(),
         }).done(function() {
             console.log('Finish saved')
         });
@@ -182,7 +182,7 @@ bkcore.hexgl.Gameplay.prototype.end = function(result)
 	else if(result == this.results.DESTROYED)
     {
         $.ajax({
-            url: "/vehicle-tracking-app/rest/addVehicleEvent/test/destroyed/"+Date(),
+            url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player +"/destroyed/"+Date(),
         }).done(function() {
             console.log('Destroy saved')
         });
@@ -215,7 +215,7 @@ bkcore.hexgl.Gameplay.prototype.update = function()
 	else if(this.step == 3 && this.timer.time.elapsed >= 4*this.countDownDelay+this.startDelay)
     {
         $.ajax({
-            url: "/vehicle-tracking-app/rest/addVehicleEvent/test/start/"+Date(),
+            url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player +"/start/"+Date(),
         }).done(function() {
             console.log('Start saved')
         });
