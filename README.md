@@ -45,6 +45,11 @@ To start the web server, in another terminal run
   ```
   mvn jetty:run
   ```
+
+Having started the webserver, you can hit the game UI by going to:
+
+    http://localhost:8080/vehicle-tracking-app/game
+
   	
 To find all movements of a vehicle use http://localhost:8080/vehicle-tracking-app/rest/getmovements/{vehicle}/{date} e.g.
 
@@ -119,3 +124,4 @@ To load test the application use cassandra-stress as follows;
   ```
   cassandra-stress user profile=stress.yaml ops\(insert=)
   ```
+

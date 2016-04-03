@@ -88,6 +88,11 @@ bkcore.hexgl.Gameplay = function(opts)
 
 		if(self.shipControls.destroyed == true)
 		{
+         $.ajax({
+             url: "/vehicle-tracking-app/rest/addVehicleEvent/test/destroyed/"+self.results.DESTROYED,
+         }).done(function() {
+             console.log('Destroy saved')
+         });
 			self.end(self.results.DESTROYED);
 		}
 	};
