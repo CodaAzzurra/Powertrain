@@ -72,8 +72,13 @@ bkcore.hexgl.Gameplay = function(opts)
 				self.end(self.results.FINISH);
 			}
 			else
-			{
-				self.lap++;
+            {
+                $.ajax({
+                    url: "/vehicle-tracking-app/rest/addVehicleEvent/test/lap/"+self.lap + "|"+ Date(),
+                }).done(function() { 
+                    console.log('Lap saved')
+                });
+                self.lap++;
 				self.hud != null && self.hud.updateLap(self.lap, self.maxLaps);
 
 				if(self.lap == self.maxLaps)
@@ -88,11 +93,6 @@ bkcore.hexgl.Gameplay = function(opts)
 
 		if(self.shipControls.destroyed == true)
 		{
-         $.ajax({
-             url: "/vehicle-tracking-app/rest/addVehicleEvent/test/destroyed/"+self.results.DESTROYED,
-         }).done(function() {
-             console.log('Destroy saved')
-         });
 			self.end(self.results.DESTROYED);
 		}
 	};
@@ -169,14 +169,24 @@ bkcore.hexgl.Gameplay.prototype.end = function(result)
 
 	this.shipControls.active = false;
 
-	if(result == this.results.FINISH)
-	{
-		if(this.hud != null) this.hud.display("Finish");
+    if(result == this.results.FINISH)
+    {
+        $.ajax({
+            url: "/vehicle-tracking-app/rest/addVehicleEvent/test/finished/"+Date(),
+        }).done(function() {
+            console.log('Finish saved')
+        });
+        if(this.hud != null) this.hud.display("Finish");
 		this.step = 100;
 	}
 	else if(result == this.results.DESTROYED)
-	{
-		if(this.hud != null) this.hud.display("Destroyed");
+    {
+        $.ajax({
+            url: "/vehicle-tracking-app/rest/addVehicleEvent/test/destroyed/"+Date(),
+        }).done(function() {
+            console.log('Destroy saved')
+        });
+        if(this.hud != null) this.hud.display("Destroyed");
 		this.step = 100;
 	}
 }
@@ -203,7 +213,12 @@ bkcore.hexgl.Gameplay.prototype.update = function()
 		this.step = 3;
 	}
 	else if(this.step == 3 && this.timer.time.elapsed >= 4*this.countDownDelay+this.startDelay)
-	{
+    {
+        $.ajax({
+            url: "/vehicle-tracking-app/rest/addVehicleEvent/test/start/"+Date(),
+        }).done(function() {
+            console.log('Start saved')
+        });
 		if(this.hud != null) this.hud.display("Go", 0.5);
 		this.step = 4;
 		this.timer.start();

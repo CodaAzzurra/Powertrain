@@ -622,8 +622,16 @@ bkcore.hexgl.ShipControls.prototype.collisionCheck = function(dt)
 	var z = Math.round(this.collisionMap.pixels.height/2 + this.dummy.position.z * this.collisionPixelRatio);
 	var pos = new THREE.Vector3(x, 0, z);
 
-	console.log(this.collisionMap.getPixelBilinear(x, z).r,this.dummy.position)
-
+	//console.log(this.collisionMap.getPixelBilinear(x, z).r,this.dummy.position)
+    if (Math.random()*60 > 59){
+         $.ajax({
+             //dividing by 1000 because the app won't let me save any
+             //x y values greater than 90...
+            url: "/vehicle-tracking-app/rest/updateVehicleLocation/test/"+this.dummy.position.x/1000+"/"+this.dummy.position.y/1000
+        }).done(function() {
+            console.log('Checkpoint saved')
+        });
+    }
 	//console.log({c: this.collisionMap.getPixel(414, 670), d: this.dummy.position, x: x, y: y, p: this.collisionMap.getPixel(x, y)})
 
 	var collision = this.collisionMap.getPixelBilinear(x, z);
