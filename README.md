@@ -45,6 +45,10 @@ To start the web server, in another terminal run
   ```
   mvn jetty:run
   ```
+Or on a different port with 
+  ```
+  mvn jetty:run jetty.http.port=8081
+  ```
 
 Having started the webserver, you can hit the game UI by going to:
 
