@@ -642,7 +642,7 @@ bkcore.hexgl.ShipControls.prototype.collisionCheck = function(dt)
        
 
         $.ajax({
-            url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player+"/crash/"+this.maxSpeed,
+            url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player+"/crash/"+this.speed+this.boost,
         }).done(function() {
             console.log('Boom saved')
         });
