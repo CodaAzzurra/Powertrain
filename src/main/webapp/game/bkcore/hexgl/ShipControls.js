@@ -627,7 +627,7 @@ bkcore.hexgl.ShipControls.prototype.collisionCheck = function(dt)
          $.ajax({
              //dividing by 1000 because the app won't let me save any
              //x y values greater than 90...
-            url: "/vehicle-tracking-app/rest/updateVehicleLocation/"+window.hexGL.player +"/"+this.dummy.position.x/1000+"/"+this.dummy.position.y/1000
+            url: "../rest/updateVehicleLocation/"+window.hexGL.player +"/"+this.dummy.position.x/1000+"/"+this.dummy.position.y/1000
         }).done(function() {
             console.log('Checkpoint saved')
         });
@@ -639,10 +639,10 @@ bkcore.hexgl.ShipControls.prototype.collisionCheck = function(dt)
 	if(collision.r < 255)
 	{
 		bkcore.Audio.play('crash');
-       
+
 
         $.ajax({
-            url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player+"/crash/"+this.maxSpeed,
+            url: "../rest/addVehicleEvent/"+window.hexGL.player+"/crash/"+this.maxSpeed,
         }).done(function() {
             console.log('Boom saved')
         });

@@ -1,7 +1,7 @@
  /*
  * HexGL
  * @author Thibaut 'BKcore' Despoulain <http://bkcore.com>
- * @license This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License. 
+ * @license This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License.
  *          To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/3.0/.
  */
 
@@ -74,8 +74,8 @@ bkcore.hexgl.Gameplay = function(opts)
 			else
             {
                 $.ajax({
-                    url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player +"/lap/"+self.lap + "|"+ Date(),
-                }).done(function() { 
+                    url: "../rest/addVehicleEvent/"+window.hexGL.player +"/lap/"+self.lap + "|"+ Date(),
+                }).done(function() {
                     console.log('Lap saved')
                 });
                 self.lap++;
@@ -172,7 +172,7 @@ bkcore.hexgl.Gameplay.prototype.end = function(result)
     if(result == this.results.FINISH)
     {
         $.ajax({
-            url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player +"/finished/"+Date(),
+            url: "../rest/addVehicleEvent/"+window.hexGL.player +"/finished/"+Date(),
         }).done(function() {
             console.log('Finish saved')
         });
@@ -182,7 +182,7 @@ bkcore.hexgl.Gameplay.prototype.end = function(result)
 	else if(result == this.results.DESTROYED)
     {
         $.ajax({
-            url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player +"/destroyed/"+Date(),
+            url: "../rest/addVehicleEvent/"+window.hexGL.player +"/destroyed/"+Date(),
         }).done(function() {
             console.log('Destroy saved')
         });
@@ -196,7 +196,7 @@ bkcore.hexgl.Gameplay.prototype.update = function()
 	if(!this.active) return;
 
 	this.timer.update();
-	
+
 	if(this.step == 0 && this.timer.time.elapsed >= this.countDownDelay+this.startDelay)
 	{
 		if(this.hud != null) this.hud.display("3");
@@ -215,14 +215,14 @@ bkcore.hexgl.Gameplay.prototype.update = function()
 	else if(this.step == 3 && this.timer.time.elapsed >= 4*this.countDownDelay+this.startDelay)
     {
         $.ajax({
-            url: "/vehicle-tracking-app/rest/addVehicleEvent/"+window.hexGL.player +"/start/"+Date(),
+            url: "../rest/addVehicleEvent/"+window.hexGL.player +"/start/"+Date(),
         }).done(function() {
             console.log('Start saved')
         });
 		if(this.hud != null) this.hud.display("Go", 0.5);
 		this.step = 4;
 		this.timer.start();
-		
+
 		if(this.mode != "replay")
 			this.shipControls.active = true;
 	}
