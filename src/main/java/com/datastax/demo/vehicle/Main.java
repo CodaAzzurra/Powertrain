@@ -1,5 +1,6 @@
 package com.datastax.demo.vehicle;
 
+import com.datastax.demo.vehicle.model.Location;
 import com.github.davidmoten.geo.LatLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,7 @@ public class Main {
     private static Logger logger = LoggerFactory.getLogger(Main.class);
     private static int TOTAL_VEHICLES = 10000;
     private static int BATCH = 10000;
-    private static Map<String, LatLong> vehicleLocations = new HashMap<String, LatLong>();
+    private static Map<String, Location> vehicleLocations = new HashMap<String, Location>();
 
     private VehicleDao dao;
 
@@ -41,13 +42,13 @@ public class Main {
 
     private void updateLocations() {
 
-        Map<String, LatLong> newLocations = new HashMap<String, LatLong>();
+        Map<String, Location> newLocations = new HashMap<String, Location>();
 
         for (int i = 0; i < BATCH; i++) {
             String random = new Double(Math.random() * TOTAL_VEHICLES).intValue() + 1 + "";
 
-            LatLong latLong = vehicleLocations.get(random);
-            LatLong update = update(latLong);
+            Location location = vehicleLocations.get(random);
+            Location update = update(location);
             vehicleLocations.put(random, update);
             newLocations.put(random, update);
         }
@@ -55,13 +56,14 @@ public class Main {
         dao.insertVehicleLocation(newLocations);
     }
 
-    private LatLong update(LatLong latLong) {
+    private Location update(Location location) {
 
-        double lon = latLong.getLon();
-        double lat = latLong.getLat();
+        double lon = location.getLatLong().getLon();
+        double lat = location.getLatLong().getLat();
+        double elevation = location.getElevation();
 
         if (Math.random() < .1)
-            return latLong;
+            return location;
 
         if (Math.random() < .5)
             lon += .0001d;
@@ -73,7 +75,12 @@ public class Main {
         else
             lat -= .0001d;
 
-        return new LatLong(lat, lon);
+        if (Math.random() < .5)
+            elevation += .0001d;
+        else
+            elevation -= .0001d;
+
+        return new Location(new LatLong(lat, lon), elevation);
     }
 
     private void createStartLocations() {
@@ -81,10 +88,15 @@ public class Main {
         for (int i = 0; i < TOTAL_VEHICLES; i++) {
             double lat = getRandomLat();
             double lon = getRandomLng();
+            double el = getRandomElevation();
 
-            this.vehicleLocations.put("" + (i + 1), new LatLong(lat, lon));
+            this.vehicleLocations.put("" + (i + 1), new Location(new LatLong(lat, lon), el));
         }
         dao.insertVehicleLocation(vehicleLocations);
+    }
+
+    private double getRandomElevation() {
+        return (Math.random() < .5) ? Math.random() : -1 * Math.random();
     }
 
     /**

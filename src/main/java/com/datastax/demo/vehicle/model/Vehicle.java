@@ -10,19 +10,19 @@ public class Vehicle {
     private Date collectTime;
     private int acceleration;
     private float fuelLevel;
-    private LatLong latLong;
+    private Location location;
     private float mileage;
     private int speed;
     private String lastTile;
     private String currentTile;
 
-    public Vehicle(String vehicleId, Date timePeriod, Date collectTime, int acceleration, float fuelLevel, LatLong latLong, float mileage, int speed, String lastTile, String currentTile) {
+    public Vehicle(String vehicleId, Date timePeriod, Date collectTime, int acceleration, float fuelLevel, Location location, float mileage, int speed, String lastTile, String currentTile) {
         this.vehicleId = vehicleId;
         this.timePeriod = timePeriod;
         this.collectTime = collectTime;
         this.acceleration = acceleration;
         this.fuelLevel = fuelLevel;
-        this.latLong = latLong;
+        this.location = location;
         this.mileage = mileage;
         this.speed = speed;
         this.lastTile = lastTile;
@@ -49,8 +49,8 @@ public class Vehicle {
         return fuelLevel;
     }
 
-    public LatLong getLatLong() {
-        return latLong;
+    public Location getLocation() {
+        return location;
     }
 
     public float getMileage() {
@@ -77,7 +77,7 @@ public class Vehicle {
                 ", collectTime=" + collectTime +
                 ", acceleration=" + acceleration +
                 ", fuelLevel=" + fuelLevel +
-                ", latLong=" + latLong +
+                ", location=" + location +
                 ", mileage=" + mileage +
                 ", speed=" + speed +
                 ", lastTile='" + lastTile + '\'' +

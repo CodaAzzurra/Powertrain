@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_stats (
     acceleration int,
     fuel_level float,
     lat_long text,
+    elevation text,
     mileage float,
     speed int,
     tile2 text,
@@ -25,13 +26,6 @@ CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_stats (
 TRUNCATE vehicle_tracking_app.vehicle_stats;
 
 // Create table to store historical vehicle statistics
-
-/*CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_stats_history (
-    vehicle_id text,
-    time_period timestamp,
-    vehicle_data blob,
-    PRIMARY KEY (vehicle_id, time_period)
-) WITH CLUSTERING ORDER BY (time_period DESC);*/
 
 CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_stats_history (
     vehicle_id text,

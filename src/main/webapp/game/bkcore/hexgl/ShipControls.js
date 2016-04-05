@@ -627,7 +627,7 @@ bkcore.hexgl.ShipControls.prototype.collisionCheck = function(dt)
          $.ajax({
              //dividing by 1000 because the app won't let me save any
              //x y values greater than 90...
-            url: "../rest/updateVehicleLocation/"+window.hexGL.player +"/"+this.dummy.position.x/1000+"/"+this.dummy.position.y/1000
+            url: "../rest/updateVehicleLocation/"+window.hexGL.player +"/"+this.dummy.position.x/1000+"/"+this.dummy.position.y/1000+"/"+0.0
         }).done(function() {
             console.log('Checkpoint saved')
         });
