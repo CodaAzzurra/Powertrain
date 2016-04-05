@@ -12,18 +12,19 @@ public class Main {
     private static Logger logger = LoggerFactory.getLogger(Main.class);
     private static int TOTAL_VEHICLES = 10000;
     private static int BATCH = 10000;
-    private static Map<String, Location> vehicleLocations = new HashMap<String, Location>();
+    private static Map<String, Location> vehicleLocations = new HashMap<>();
 
     private VehicleDao dao;
 
     public Main() {
 
         String contactPointsStr = System.getProperty("contactPoints", "127.0.0.1");
-        this.dao = new VehicleDao(contactPointsStr.split(","));
+        this.dao = new VehicleDao(new SessionService(contactPointsStr).getSession());
 
         logger.info("Creating Locations");
         createStartLocations();
 
+        // TODO move this into a background thread in the app
         while (true) {
             logger.info("Updating Locations");
             updateLocations();
