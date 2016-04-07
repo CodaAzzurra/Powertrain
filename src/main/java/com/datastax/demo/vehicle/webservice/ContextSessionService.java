@@ -58,7 +58,7 @@ public class ContextSessionService {
             }
         }
 
-        logger.info("Cluster dispatched on thread [" + Thread.currentThread().getName() + "]:" + cluster.toString());
+        logger.debug("Cluster dispatched on thread [" + Thread.currentThread().getName() + "]:" + cluster.toString());
 
         return cluster;
     }
@@ -75,7 +75,7 @@ public class ContextSessionService {
             }
         }
 
-        logger.info("Session dispatched on thread [" + Thread.currentThread().getName() + "]:" + session.toString());
+        logger.debug("Session dispatched on thread [" + Thread.currentThread().getName() + "]:" + session.toString());
 
         return session;
     }
@@ -92,7 +92,7 @@ public class ContextSessionService {
             }
         }
 
-        logger.info("DAO dispatched on thread [" + Thread.currentThread().getName() + "]:" + dao.toString());
+        logger.debug("DAO dispatched on thread [" + Thread.currentThread().getName() + "]:" + dao.toString());
 
         return dao;
     }
