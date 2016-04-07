@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
 <Configure id="Server" class="org.eclipse.jetty.server.Server">
 
     <!-- =========================================================== -->
@@ -9,8 +8,8 @@
     <!-- for all configuration that may be set here.                 -->
     <!-- =========================================================== -->
     <Get name="ThreadPool">
-        <Set name="minThreads" type="int">10</Set>
-        <Set name="maxThreads" type="int">200</Set>
+        <Set name="minThreads" type="int">2</Set>
+        <Set name="maxThreads" type="int">5</Set>
         <Set name="idleTimeout" type="int">60000</Set>
         <Set name="detailedDump">false</Set>
     </Get>
