@@ -56,13 +56,13 @@ table: vehicle_stats
 #
 columnspec:
   - name: vehicle_id
-    size: uniform(1..10)          # Vehicle Id's quite short
+    size: fixed(10)               # Vehicle Id's quite short
     population: uniform(1..100M)  # The range of unique values to select for the field (default is 100Billion)
 
   - name: time_period
 
   - name: collect_time
-    cluster: fixed(28800)         # Number of collections per, 1 every 5s for a day
+    cluster: gaussian(100..6000) # Number of collections per day, 1 every 5s for a day. Example trips could be 5 min or 5 hrs
 
   - name: acceleration
 
