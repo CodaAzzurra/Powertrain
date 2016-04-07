@@ -7,7 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jws.WebService;
-import javax.ws.rs.*;
+import javax.servlet.ServletContext;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.text.SimpleDateFormat;
@@ -16,12 +21,21 @@ import java.util.List;
 @WebService
 @Path("/")
 public class VehicleWS {
-
     private static final Logger logger = LoggerFactory.getLogger(VehicleWS.class);
-    private static final SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyyMMdd");
 
-    // Service Layer.
-    private VehicleService service = new VehicleService();
+    // Service Layer
+    private VehicleService service;
+
+    public VehicleWS() {
+        logger.debug("Created WS");
+    }
+
+    @Context
+    public void setServletContext(ServletContext context) {
+        if (service == null) {
+            service = new VehicleService(context);
+        }
+    }
 
     @GET
     @Path("/getmovements/{vehicle}/{date}")
@@ -56,11 +70,12 @@ public class VehicleWS {
     }
 
     @GET
-    @Path("/updateVehicleLocation/{vehicle}/{lon}/{lat}/{elevation}")
+    @Path("/updateVehicleLocation/{vehicle}/{lon}/{lat}/{elevation}/{speed}/{acceleration}")
     @Produces("text/html")
     public Response updateVehicleLocation(@PathParam("vehicle") String vehicle, @PathParam("lon") String lon,
-                                          @PathParam("lat") String lat, @PathParam("elevation") String elevation) {
-        service.updateVehicleLocation(vehicle, new Location(new LatLong(Double.parseDouble(lat), Double.parseDouble(lon)), Double.parseDouble(elevation)));
+                                          @PathParam("lat") String lat, @PathParam("elevation") String elevation,
+                                          @PathParam("speed") Integer speed, @PathParam("acceleration") Integer acceleration) {
+        service.updateVehicleLocation(vehicle, new Location(new LatLong(Double.parseDouble(lat), Double.parseDouble(lon)), Double.parseDouble(elevation)), speed, acceleration);
         return Response.ok("success").build();
     }
 
