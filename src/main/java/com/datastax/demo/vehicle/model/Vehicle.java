@@ -1,7 +1,5 @@
 package com.datastax.demo.vehicle.model;
 
-import com.github.davidmoten.geo.LatLong;
-
 import java.util.Date;
 
 public class Vehicle {
