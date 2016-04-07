@@ -9,14 +9,14 @@ version := "1.0"
 
 scalaVersion := "2.10.6"
 
-val DSE_HOME = sys.env.getOrElse("DSE_HOME", sys.env("HOME")+"dse")
+val DSE_HOME = sys.env.getOrElse("DSE_HOME", sys.env("HOME") + "dse")
 
 val sparkClasspathStr = s"$DSE_HOME/bin/dse spark-classpath".!!.trim
 val sparkClasspathArr = sparkClasspathStr.split(':')
 
 //Find all Jars on dse spark-classpath
 val sparkClasspath = {
-  for ( dseJar <- sparkClasspathArr if dseJar.endsWith("jar"))
+  for (dseJar <- sparkClasspathArr if dseJar.endsWith("jar"))
     yield Attributed.blank(file(dseJar))
 }.toSeq
 

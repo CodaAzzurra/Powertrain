@@ -24,18 +24,18 @@
 
     <!-- use AsyncAppender for lower latencies -->
     <appender name="async" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="console" />
-        <appender-ref ref="file" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
     </appender>
 
     <!--
     Turn on slow query logging by setting this logger to DEBUG;
     set level to TRACE to also log query parameters
     -->
-    <logger name="com.datastax.driver.core.QueryLogger.SLOW" level="DEBUG" />
+    <logger name="com.datastax.driver.core.QueryLogger.SLOW" level="DEBUG"/>
 
     <root level="INFO">
-        <appender-ref ref="async" />
+        <appender-ref ref="async"/>
     </root>
 
 </configuration>
