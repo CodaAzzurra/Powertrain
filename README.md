@@ -103,10 +103,10 @@ To remove the tables and the schema, run the following.
   mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaTeardown"
   ```
     
-To update a vehicle pass its Id and location (lon + lat + elevation). This will add one if it doesn't already exist
+To update a vehicle pass its id, location (lon + lat + elevation), speed and acceleration. This will add one if it doesn't already exist
 
   ```
-  curl -X PUT http://localhost:8080/vehicle-tracking-app/rest/updateVehicleLocation/1683/22.53956077140064/-0.20225833920426117/10.00
+  curl -X PUT http://localhost:8080/vehicle-tracking-app/rest/updateVehicleLocation/1683/22.53956077140064/-0.20225833920426117/10.00/55/5
   ```
   	
 To get a vehicles location (lon + lat)
