@@ -3,10 +3,10 @@ package com.datastax.demo.vehicle;
 import com.datastax.demo.utils.AsyncWriterWrapper;
 import com.datastax.demo.vehicle.model.Location;
 import com.datastax.demo.vehicle.model.Vehicle;
-import com.datastax.driver.core.*;
-import com.datastax.driver.core.policies.DCAwareRoundRobinPolicy;
-import com.datastax.driver.core.policies.DefaultRetryPolicy;
-import com.datastax.driver.core.policies.TokenAwarePolicy;
+import com.datastax.driver.core.PreparedStatement;
+import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.Row;
+import com.datastax.driver.core.Session;
 import com.github.davidmoten.geo.GeoHash;
 import com.github.davidmoten.geo.LatLong;
 import org.slf4j.Logger;
@@ -23,6 +23,7 @@ import java.util.Map.Entry;
 public class VehicleDao {
 
     private static final Logger logger = LoggerFactory.getLogger(VehicleDao.class);
+
     private static final String keyspaceName = "vehicle_tracking_app";
     private static final String vehicleTable = keyspaceName + ".vehicle_stats";
     private static final String INSERT_INTO_VEHICLE = "insert into " + vehicleTable + " (vehicle_id, time_period, collect_time, lat_long, elevation, tile2, speed, acceleration, fuel_level, mileage) values (?,?,?,?,?,?,?,?,?,?);";
@@ -31,6 +32,8 @@ public class VehicleDao {
     private static final String INSERT_INTO_VEHICLE_EVENT = "insert into " + vehicleEventsTable + " (vehicle_id, time_period, collect_time, event_name, event_value) values (?,?,?,?,?);";
     private static final String currentLocationTable = keyspaceName + ".current_location";
     private static final String INSERT_INTO_CURRENTLOCATION = "insert into " + currentLocationTable + "(vehicle_id, tile1, tile2, lat_long, collect_time) values (?,?,?,?,?)";
+    private final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+
     // Session and PreparedStatement are both thread-safe and one Session per application is usually fine
     private Session session;
     private PreparedStatement insertVehicle;
@@ -38,25 +41,15 @@ public class VehicleDao {
     private PreparedStatement insertCurrentLocation;
     private PreparedStatement queryVehicle;
 
-    private final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-
-    public VehicleDao(String[] contactPoints) {
-
-        Cluster cluster = Cluster.builder()
-                .addContactPoints(contactPoints)
-                .withRetryPolicy(DefaultRetryPolicy.INSTANCE)
-                // .withCredentials("cassandra", "cassandra")
-                .withLoadBalancingPolicy(
-                        new TokenAwarePolicy(DCAwareRoundRobinPolicy.builder().build()))
-                .build();
-
-        this.session = cluster.connect();
+    public VehicleDao(Session session) {
+        this.session = session;
 
         this.insertVehicle = session.prepare(INSERT_INTO_VEHICLE);
         this.insertVehicleEvent = session.prepare(INSERT_INTO_VEHICLE_EVENT);
         this.insertCurrentLocation = session.prepare(INSERT_INTO_CURRENTLOCATION);
 
         this.queryVehicle = session.prepare(QUERY_BY_VEHICLE);
+        logger.debug("Creating new DAO in thread: " + Thread.currentThread());
     }
 
     public void insertVehicleLocation(Map<String, Location> newLocations) {
@@ -88,6 +81,35 @@ public class VehicleDao {
             wrapper.addStatement(insertCurrentLocation.bind(entry.getKey(), tile1, tile2,
                     entry.getValue().getLatLong().getLat() + "," + entry.getValue().getLatLong().getLon(), nowDate));
         }
+        wrapper.executeAsync(this.session);
+    }
+
+    public void updateVehicle(String vehicleId, Location location, int speed, int acceleration) {
+        long day = 24 * 60 * 60 * 1000;
+        Date today = new Date((System.currentTimeMillis() / day) * day);
+        AsyncWriterWrapper wrapper = new AsyncWriterWrapper();
+        Random random = new Random();
+
+        // Update time for reading
+        LocalDateTime now = LocalDateTime.now();
+        now = now.plusSeconds(10);
+        Instant instant = now.atZone(ZoneId.systemDefault()).toInstant();
+        Date nowDate = Date.from(instant);
+
+        String tile1 = GeoHash.encodeHash(location.getLatLong(), 4);
+        String tile2 = GeoHash.encodeHash(location.getLatLong(), 7);
+
+        float fuelLevel = Math.abs(random.nextFloat() % 50);
+        float mileage = Math.abs(random.nextFloat() % 50000);
+
+        wrapper.addStatement(insertVehicle.bind(vehicleId, today, nowDate,
+                location.getLatLong().getLat() + "," + location.getLatLong().getLon(),
+                Double.toString(location.getElevation()), tile2, speed,
+                acceleration, fuelLevel, mileage));
+
+        wrapper.addStatement(insertCurrentLocation.bind(vehicleId, tile1, tile2,
+                location.getLatLong().getLat() + "," + location.getLatLong().getLon(), nowDate));
+
         wrapper.executeAsync(this.session);
     }
 
@@ -205,4 +227,5 @@ public class VehicleDao {
 
         return new Vehicle(vehicleId, null, collectTime, 0, 0.0f, new Location(new LatLong(lat, lng), el), 0.0f, 0, tile1, "");
     }
+
 }
