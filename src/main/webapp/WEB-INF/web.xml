@@ -6,11 +6,11 @@
     <display-name>Vehicle Tracking App Web Service</display-name>
 
     <servlet>
-        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-name>jersey-servlet</servlet-name>
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>com.datastax.demo.vehicle.webservice</param-value>
+            <param-value>com.datastax.demo.vehicle.webservice, com.datastax.demo.vehicle.contextmanaged</param-value>
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
@@ -20,11 +20,19 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-name>jersey-servlet</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/game/*</url-pattern>
     </servlet-mapping>
+
+    <context-param>
+        <description>Contact points for the Cassandra Driver</description>
+        <param-name>contactPoints</param-name>
+        <!-- If you are here, you should probably set this value to something correct -->
+        <param-value>127.0.0.2,127.0.0.3,127.0.0.4</param-value>
+    </context-param>
+    
 </web-app>

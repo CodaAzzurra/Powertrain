@@ -12,6 +12,8 @@ import com.github.davidmoten.geo.LatLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletContext;
+import javax.ws.rs.core.Context;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -23,6 +25,7 @@ import java.util.Map.Entry;
 public class VehicleDao {
 
     private static final Logger logger = LoggerFactory.getLogger(VehicleDao.class);
+
     private static final String keyspaceName = "vehicle_tracking_app";
     private static final String vehicleTable = keyspaceName + ".vehicle_stats";
     private static final String INSERT_INTO_VEHICLE = "insert into " + vehicleTable + " (vehicle_id, time_period, collect_time, lat_long, elevation, tile2, speed, acceleration, fuel_level, mileage) values (?,?,?,?,?,?,?,?,?,?);";
@@ -40,17 +43,8 @@ public class VehicleDao {
 
     private final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-    public VehicleDao(String[] contactPoints) {
-
-        Cluster cluster = Cluster.builder()
-                .addContactPoints(contactPoints)
-                .withRetryPolicy(DefaultRetryPolicy.INSTANCE)
-                // .withCredentials("cassandra", "cassandra")
-                .withLoadBalancingPolicy(
-                        new TokenAwarePolicy(DCAwareRoundRobinPolicy.builder().build()))
-                .build();
-
-        this.session = cluster.connect();
+    public VehicleDao(Session session) {
+        this.session = session;
 
         this.insertVehicle = session.prepare(INSERT_INTO_VEHICLE);
         this.insertVehicleEvent = session.prepare(INSERT_INTO_VEHICLE_EVENT);
@@ -205,4 +199,5 @@ public class VehicleDao {
 
         return new Vehicle(vehicleId, null, collectTime, 0, 0.0f, new Location(new LatLong(lat, lng), el), 0.0f, 0, tile1, "");
     }
+
 }
