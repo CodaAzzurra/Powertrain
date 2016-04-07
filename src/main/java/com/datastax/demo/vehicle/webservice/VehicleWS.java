@@ -74,8 +74,8 @@ public class VehicleWS {
     @Produces("text/html")
     public Response updateVehicleLocation(@PathParam("vehicle") String vehicle, @PathParam("lon") String lon,
                                           @PathParam("lat") String lat, @PathParam("elevation") String elevation,
-                                          @PathParam("speed") Integer speed, @PathParam("acceleration") Integer acceleration) {
-        service.updateVehicleLocation(vehicle, new Location(new LatLong(Double.parseDouble(lat), Double.parseDouble(lon)), Double.parseDouble(elevation)), speed, acceleration);
+                                          @PathParam("speed") String speed, @PathParam("acceleration") String acceleration) {
+        service.updateVehicleLocation(vehicle, new Location(new LatLong(Double.parseDouble(lat), Double.parseDouble(lon)), Double.parseDouble(elevation)), Double.parseDouble(speed), Double.parseDouble(acceleration));
         return Response.ok("success").build();
     }
 

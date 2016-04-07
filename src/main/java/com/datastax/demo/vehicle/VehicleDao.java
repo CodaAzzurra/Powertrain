@@ -84,7 +84,7 @@ public class VehicleDao {
         wrapper.executeAsync(this.session);
     }
 
-    public void updateVehicle(String vehicleId, Location location, int speed, int acceleration) {
+    public void updateVehicle(String vehicleId, Location location, double speed, double acceleration) {
         long day = 24 * 60 * 60 * 1000;
         Date today = new Date((System.currentTimeMillis() / day) * day);
         AsyncWriterWrapper wrapper = new AsyncWriterWrapper();

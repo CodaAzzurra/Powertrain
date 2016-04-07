@@ -31,7 +31,7 @@ public class VehicleService {
         return dao.getVehiclesLocation(vehicleId);
     }
 
-    public void updateVehicleLocation(String vehicleId, Location location, int speed, int acceleration) {
+    public void updateVehicleLocation(String vehicleId, Location location, double speed, double acceleration) {
         dao.updateVehicle(vehicleId, location, speed, acceleration);
     }
 
