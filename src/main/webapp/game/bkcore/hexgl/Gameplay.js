@@ -74,7 +74,7 @@ bkcore.hexgl.Gameplay = function(opts)
 			else
             {
                 $.ajax({
-                    url: "../rest/addVehicleEvent/"+window.hexGL.player +"/lap/"+self.lap + "|"+ Date(),
+                    url: "../rest/addVehicleEvent/"+window.hexGL.player +"/lap/"+self.lap,
                 }).done(function() {
                     console.log('Lap saved')
                 });
