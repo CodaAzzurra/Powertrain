@@ -34,6 +34,13 @@ If you want to also query on where vehicles where at a certain time.
   dsetool unload_core vehicle_tracking_app.vehicle_stats
   dsetool create_core vehicle_tracking_app.vehicle_stats reindex=true coreOptions=src/main/resources/solr/rt.yaml schema=src/main/resources/solr/geo_vehicle.xml solrconfig=src/main/resources/solr/solrconfig.xml	
   ```
+Also index the events
+
+```
+  dsetool unload_core vehicle_tracking_app.vehicle_events
+  dsetool create_core vehicle_tracking_app.vehicle_events reindex=true coreOptions=src/main/resources/solr/rt.yaml schema=src/main/resources/solr/events.xml solrconfig=src/main/resources/solr/solrconfig.xml	
+```
+
   	
 To continuously update the locations of the vehicles run 
 
