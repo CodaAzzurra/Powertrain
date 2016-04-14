@@ -29,7 +29,7 @@ object VehicleRollUps extends App {
       avg(result.col("speed")) as "speed_avg", min(result.col("speed")) as "speed_min", max(result.col("speed")) as "speed_max")
 
   result2.write
-    .format("org.apache.spark.sql.cassandra")
+    .format("org.apache.spark.sql.cassandra").mode("append")
     .options(Map("table" -> "vehicle_stats_history", "keyspace" -> "vehicle_tracking_app"))
     .save()
 
