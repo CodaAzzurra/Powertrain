@@ -70,10 +70,10 @@ public class VehicleDao {
             String tile1 = GeoHash.encodeHash(entry.getValue().getLatLong(), 4);
             String tile2 = GeoHash.encodeHash(entry.getValue().getLatLong(), 7);
 
-            int speed = Math.abs(random.nextInt() % 100);
+            double speed = Math.abs(random.nextInt() % 100);
             float fuelLevel = Math.abs(random.nextFloat() % 50);
             float mileage = Math.abs(random.nextFloat() % 50000);
-            int acceleration = Math.abs(random.nextInt() % 100);
+            double acceleration = Math.abs(random.nextInt() % 100);
 
             wrapper.addStatement(insertVehicle.bind(entry.getKey(), today, nowDate,
                     entry.getValue().getLatLong().getLat() + "," + entry.getValue().getLatLong().getLon(), Double.toString(entry.getValue().getElevation()), tile2, speed, acceleration, fuelLevel, mileage));
