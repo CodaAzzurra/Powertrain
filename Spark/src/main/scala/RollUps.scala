@@ -1,4 +1,11 @@
 
+import org.apache.spark._
+import org.apache.spark.sql.hive.HiveContext
+import org.apache.spark.sql.functions._
+import org.apache.spark.sql.cassandra._
+
+import com.datastax.spark.connector.cql.CassandraConnector
+import com.datastax.spark.connector._
 
 object Example extends App {
 
@@ -11,9 +18,11 @@ object Example extends App {
   // This Hive Context will use the DSE HiveMetaStore
   val sqlContext = new HiveContext(sc)
 
+  import sqlContext.implicits._
+
   val result = sqlContext.sql("select * from vehicle_tracking_app.vehicle_stats")
 
-  val result2 = result.groupBy($"vehicle_id", $"time_period")
+  val result2 = result.groupBy("vehicle_id", "time_period")
     .agg(avg(result.col("acceleration")) as "acceleration_avg", min(result.col("acceleration")) as "acceleration_min", max(result.col("acceleration")) as "acceleration_max",
       avg(result.col("fuel_level")) as "fuel_level_avg", min(result.col("fuel_level")) as "fuel_level_min", max(result.col("fuel_level")) as "fuel_level_max",
       min(result.col("mileage")) as "mileage_min", max(result.col("mileage")) as "mileage_max",
