@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS vehicle_tracking_app.vehicle_stats (
     speed double,
     tile2 text,
     PRIMARY KEY ((vehicle_id, time_period), collect_time)
-) WITH CLUSTERING ORDER BY (collect_time DESC)
+) WITH CLUSTERING ORDER BY (collect_time DESC);
 
 TRUNCATE vehicle_tracking_app.vehicle_stats;
 
