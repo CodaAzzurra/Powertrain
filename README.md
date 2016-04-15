@@ -567,7 +567,62 @@ You can read more about stress testing a data model here
 http://www.datastax.com/dev/blog/improved-cassandra-2-1-stress-tool-benchmark-any-schema and here 
 http://docs.datastax.com/en/cassandra/2.1/cassandra/tools/toolsCStress_t.html
 
-## Other information
+##Silk (DSE Search Dashboarding UI)
+Silk is lucidwork's port of Kibana for Solr. Because I had to make some modifications to the Silk source for it to work with DSE Search and because it has some node.js dependencies, the easiest way to run it is to use this neatly packaged docker container. You can run silk ontop of this demo to visualize the vehicle data.
+
+###clone the repo:
+    git clone https://github.com/phact/docker-silk-dse
+
+Set up keyspace and table:
+
+    wget https://raw.githubusercontent.com/phact/silk/dev/silkconfig/conf/schema.cql
+    
+    cqlsh -f schema.cql
+    
+Set up the DSE Search core before kicking off the container:
+    
+    chmod +x create_core.sh
+    ./create_core.sh
+
+###Docker setup for OSX:
+
+```
+#setup
+docker-machine start default
+eval $(docker-machine env default)
+#a bit of cleanup
+docker rm -f $(docker ps -aq)
+docker rmi -f $(docker images -aq)
+#build
+docker build -t silk-image .
+docker run --net=host -d -p 0.0.0.0:5601:5601  --name silk silk-image
+#or for debug
+docker run -it --net=host -p 0.0.0.0:5601:5601  --name silk silk-image
+docker-machine ip default
+```
+
+###Docker setup for linux:
+install docker https://docs.docker.com/engine/installation/linux
+
+add your user to the docker group
+    sudo gpasswd -a ${USER} docker
+
+and refresh 
+   newgrp docker 
+
+
+````
+#start docker
+service docker start
+docker build -t silk-image .
+docker run -d -p 0.0.0.0:5601:5601  --name silk silk-image
+
+#or if it's not working run without detaching to troubeshoot
+docker run --net=host -p 0.0.0.0:5601:5601  --name silk silk-image
+````
+
+
+### Other information
 
 To buffer requests for DSE if there are peaks in demand a technology like Kafka could be used to store and forward requests.
 
