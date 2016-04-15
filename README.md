@@ -23,7 +23,7 @@ The insurance company would like to access this service in DSE via REST to;
 
 This example does not contain industry specific logic, but illustrates how a scalable data model and architecture can be built for such an application using DSE.
 
-**The driving game incorporated with this example also provides a fun way to generate sensor readings ;) **
+*The driving game incorporated with this example also provides a fun way to generate sensor readings ;) *
 
 ## DSE Setup
 DataStax Enterprise supplies built-in enterprise analytics and search functionality on Cassandra data that scales and performs in a way that meets the search analytics requirements of modern 
@@ -309,9 +309,7 @@ to ensure readings are not lost.
 To run the Spark roll-up job;
 
 1. Ensure you are in the 'Spark' folder
-
 2. Build the application using command :
-
 ```
 sbt package
 ```
@@ -566,7 +564,7 @@ Improvement over 181 threadCount: 3%
 ```
 
 You can read more about stress testing a data model here 
-http://www.datastax.com/dev/blog/improved-cassandra-2-1-stress-tool-benchmark-any-schema 
+http://www.datastax.com/dev/blog/improved-cassandra-2-1-stress-tool-benchmark-any-schema and here 
 http://docs.datastax.com/en/cassandra/2.1/cassandra/tools/toolsCStress_t.html
 
 ## Other information
