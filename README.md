@@ -23,7 +23,7 @@ The insurance company would like to access this service in DSE via REST to;
 
 This example does not contain industry specific logic, but illustrates how a scalable data model and architecture can be built for such an application using DSE.
 
-*The driving game incorporated with this example also provides a fun way to generate sensor readings ;) *
+**The driving game incorporated with this example also provides a fun way to generate sensor readings ;)**
 
 ## DSE Setup
 DataStax Enterprise supplies built-in enterprise analytics and search functionality on Cassandra data that scales and performs in a way that meets the search analytics requirements of modern 
@@ -310,13 +310,13 @@ To run the Spark roll-up job;
 
 1. Ensure you are in the 'Spark' folder
 2. Build the application using command :
-```
-sbt package
-```
+  ```
+  sbt package
+  ```
 3. Submit the application using command :
-```
-dse spark-submit target/scala-2.10/powertrain_2.10-1.0.jar
-```
+  ```
+  dse spark-submit target/scala-2.10/powertrain_2.10-1.0.jar
+  ```
 Although not included Spark Streaming combined with Machine Learning algorithms could easily be added to analyse sensor readings and highlight 
 driving patterns that could be linked to claims. This could then be used to adjust online quotes in real-time
 
