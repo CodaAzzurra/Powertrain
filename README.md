@@ -213,11 +213,7 @@ http://localhost:8080/vehicle-tracking-app/game
 
 USE vehicle_tracking_app;
 
-INSERT INTO vehicle_stats (vehicle_id_, time_period, collect_time, lat_long, 
-  elevation, tile2, speed, acceleration, fuel_level, mileage) 
-values ("FT664PQ", "2016-02-11T00:00:00.000Z", "2016-02-11T12:32:20.000Z", 15.8, 19.1, 
-  "52.53956077140064,-0.20225833920426117", "-0.20225833920426117", 23987.67,
-  87.56, "gcx8zjq");
+INSERT INTO vehicle_stats (vehicle_id, time_period, collect_time, lat_long,    elevation, tile2, speed, acceleration, fuel_level, mileage)  values ('Seb', '2016-02-11T00:00:00.000Z',  '2016-02-11T12:32:20.000Z', '0.3869000146484375,-2.2514641738287566',  '-0.996',  'gcx8zjq' ,  2.56125,  0, 0.599259, 0.355472);
 ```
 
 ## Sample queries
