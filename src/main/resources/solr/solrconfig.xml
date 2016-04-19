@@ -16,9 +16,9 @@
  limitations under the License.
 -->
 
-<!-- 
+<!--
      For more details about configurations options that may appear in
-     this file, see http://wiki.apache.org/solr/SolrConfigXml. 
+     this file, see http://wiki.apache.org/solr/SolrConfigXml.
 -->
 <config>
     <!-- In all configuration below, a prefix of "solr." for class names
@@ -327,21 +327,22 @@
                autowarmCount - the number of entries to prepopulate from
                    and old cache.
           -->
-        <filterCache class="solr.FastLRUCache"
-                     size="512"
-                     initialSize="512"
-                     autowarmCount="0"/>
+        <filterCache
+            class="solr.search.SolrFilterCache"
+            autowarmCount="90%"
+            lowWaterMarkMB="128"
+            highWaterMarkMB="256" />
 
         <!-- Query Result Cache
 
              Caches results of searches - ordered lists of document ids
              (DocList) based on a query, a sort, and the range of documents requested.
-          -->
         <queryResultCache class="solr.LRUCache"
                           size="512"
                           initialSize="512"
                           autowarmCount="0"/>
 
+          -->
         <!-- Field Value Cache
 
              Cache used to hold field values that are quickly accessible
