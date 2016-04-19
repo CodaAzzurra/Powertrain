@@ -630,7 +630,7 @@ bkcore.hexgl.ShipControls.prototype.collisionCheck = function(dt)
              //I don' have a value for acceleration, I was thinking to provide quaternions
              //but they aren' a single number (needs to be text). So I'll provide boost instead
             //url: "../rest/updateVehicleLocation/"+window.hexGL.player +"/"+this.dummy.position.x/1000+"/"+this.dummy.position.y/1000+"/"+this.dummy.position.z+"/"+(this.speed+this.boost)+"/"+"w:"+this.dummy.quaternion.w+",x:"+this.dummy.quaternion.x+",y:"+this.dummy.quaternion.y+",z:"+this.dummy.quaternion.z
-            url: "../rest/updateVehicleLocation/"+window.hexGL.player +"/"+this.dummy.position.x/1000+"/"+this.dummy.position.y/1000+"/"+this.dummy.position.z/1000+"/"+(this.speed+this.boost)+"/"+this.boost
+            url: "../rest/updateVehicleLocation/"+window.hexGL.player +"/"+this.dummy.position.x/1000+"/"+this.dummy.position.z/1000+"/"+this.dummy.position.y/1000+"/"+(this.speed+this.boost)+"/"+this.boost
         }).done(function() {
             console.log('Checkpoint saved')
         });
