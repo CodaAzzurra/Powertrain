@@ -68,6 +68,19 @@ bkcore.hexgl.CameraChase.prototype.update = function(dt, ratio)
 		this.camera.lookAt(this.targetObject.position);
 	}
 
-	if(this.cameraCube != null)
-		this.cameraCube.rotation.copy(this.camera.rotation);
+	else if (this.mode == this.modes.TOP){
+        this.time += dt*.008;
+        this.dir.set(
+            -1000,
+            5000,
+            953
+        );
+        this.target.copy(this.targetObject.position).addSelf(this.dir);
+        this.camera.position.copy(this.target);
+        this.camera.lookAt(this.targetObject.position); 
+    }
+
+    if(this.cameraCube != null)
+        this.cameraCube.rotation.copy(this.camera.rotation);
+
 }
