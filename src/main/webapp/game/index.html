@@ -13,8 +13,10 @@
 
     </script>
     <title>Powertrain</title>
+    <meta name="google-signin-client_id" content="61115967087-entofbitidq4ipj7ltmeu4k26jm9pl22.apps.googleusercontent.com">
+
     <meta charset="utf-8">
-    <meta name="description" content="Based on -- HexGL, a futuristic racing game built by Thibaut Despoulain (BKcore) using HTML5, Javascript and WebGL. Come challenge your friends on this fast-paced 3D game!">
+    <meta name="description" content="DataStax Powertrain is a DSE demo demonstrating search and steaming analytics functionality. This UI is based on -- HexGL, a futuristic racing game built by Thibaut Despoulain (BKcore)">
     <meta property="og:title" content="Powertrain" />
     <meta property="og:type" content="game" />
     <link rel="icon" href="favicon.png" type="image/png">
@@ -35,6 +37,11 @@
         left: 0;
         width: 100%;
       }
+      #g-button{
+        position:absolute;
+        z-index:1;
+      }
+
     </style>
     <script type="text/javascript">
     //analytics
@@ -47,9 +54,36 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
     </script>
+
   </head>
 
   <body>
+
+  <div id="g-button"></div>
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
+      $("#playerName").val(googleUser.getBasicProfile().getName());
+      
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('g-button', {
+        'scope': 'profile email https://www.googleapis.com/auth/contacts.readonly',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
     <div id="step-1">
       <div id="global"></div>
       <div id="title">
@@ -67,7 +101,7 @@
     </div>
     <div id="step-2" style="display: none">
       <div id="ctrl-help">Click/Touch to continue.</div>
-      <input id="playerName" value="insert name here"></input>
+      <input style="display:none" id="playerName" value="insert name here"></input>
     </div>
     <div id="step-3" style="display: none">
       <div id="progressbar"></div>
